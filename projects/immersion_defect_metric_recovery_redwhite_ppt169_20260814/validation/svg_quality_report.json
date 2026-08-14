@@ -1,0 +1,229 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "final",
+  "target": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "7408a0205db6000d0d424ba79bd084d90ef9df53d79663078215069dcc57df9d",
+    "file_count": 8,
+    "files": [
+      {
+        "file": "01_cover.svg",
+        "sha256": "7715aea5500d00a6d8618ff69079790c96c77b5157de04ec29556f858b61d744"
+      },
+      {
+        "file": "02_metric_tree.svg",
+        "sha256": "4f68323949a2795678147fca312440942ecb13902f7aa19de5a90d214c9e57ba"
+      },
+      {
+        "file": "03_waterfall.svg",
+        "sha256": "166a512b1233804fe112d79f200da4ea25c59168b92811dabf6a7ba91f219a78"
+      },
+      {
+        "file": "04_lever_split.svg",
+        "sha256": "73022f58c3b2f78bd494793673e61964978cd86c84964f88264a2ff9e3b22707"
+      },
+      {
+        "file": "05_split_lot.svg",
+        "sha256": "9e0146fd637efe735eaf40ed736640c83c2c205cecfc35aa62fb46ac045c3b1e"
+      },
+      {
+        "file": "06_d0_trend.svg",
+        "sha256": "564bed8747659bca075789d87f8c82c0a88f88ecec59cb8fd4886eaff820bbd4"
+      },
+      {
+        "file": "07_residual_risk.svg",
+        "sha256": "590b1ce6d1accbbb419cc170e35aca7b8c734847bf4c2cb0253bcec8e8e5d7cc"
+      },
+      {
+        "file": "08_release_gate.svg",
+        "sha256": "6ceeada95f01bac8e144ce35b63923dc851412e3847a6f4f0d4b55eb21d832e3"
+      }
+    ]
+  },
+  "summary": {
+    "total": 8,
+    "passed": 7,
+    "warnings": 1,
+    "errors": 0
+  },
+  "issue_types": {},
+  "categories": {
+    "blocking": {
+      "count": 0,
+      "issues": []
+    },
+    "introduced": {
+      "count": 1,
+      "issues": [
+        {
+          "file": "04_lever_split.svg",
+          "message": "Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=884, y=430; text='捕获率 84%→91%假回收已从曲线剔除'); use supported explicit text positioning when page fit matters"
+        }
+      ]
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {},
+    "fonts": {},
+    "sizes": {}
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_cover.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/01_cover.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 15,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "7715aea5500d00a6d8618ff69079790c96c77b5157de04ec29556f858b61d744"
+    },
+    {
+      "file": "02_metric_tree.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/02_metric_tree.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 40,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "4f68323949a2795678147fca312440942ecb13902f7aa19de5a90d214c9e57ba"
+    },
+    {
+      "file": "03_waterfall.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/03_waterfall.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 14,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "166a512b1233804fe112d79f200da4ea25c59168b92811dabf6a7ba91f219a78"
+    },
+    {
+      "file": "04_lever_split.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/04_lever_split.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=884, y=430; text='捕获率 84%→91%假回收已从曲线剔除'); use supported explicit text positioning when page fit matters"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 18,
+        "tspan_elements": 1
+      },
+      "passed": true,
+      "source_sha256": "73022f58c3b2f78bd494793673e61964978cd86c84964f88264a2ff9e3b22707"
+    },
+    {
+      "file": "05_split_lot.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/05_split_lot.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 13,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "9e0146fd637efe735eaf40ed736640c83c2c205cecfc35aa62fb46ac045c3b1e"
+    },
+    {
+      "file": "06_d0_trend.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/06_d0_trend.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 23,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "564bed8747659bca075789d87f8c82c0a88f88ecec59cb8fd4886eaff820bbd4"
+    },
+    {
+      "file": "07_residual_risk.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/07_residual_risk.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 9,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "590b1ce6d1accbbb419cc170e35aca7b8c734847bf4c2cb0253bcec8e8e5d7cc"
+    },
+    {
+      "file": "08_release_gate.svg",
+      "path": "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/svg_output/08_release_gate.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 13,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "6ceeada95f01bac8e144ce35b63923dc851412e3847a6f4f0d4b55eb21d832e3"
+    }
+  ]
+}

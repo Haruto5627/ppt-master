@@ -1,0 +1,222 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "final",
+  "target": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "9e12560b00ef704c9b42571ed96158d7d768c85cb2de3686dc757c23ff465e35",
+    "file_count": 8,
+    "files": [
+      {
+        "file": "01_cover.svg",
+        "sha256": "f4aafd9ceee2677615697321f8d660d844797688651dcd4fe600d65d9f4925b0"
+      },
+      {
+        "file": "02_executive_summary.svg",
+        "sha256": "cfafab2c2b806bdc0e4060087061cb0eeef3f106977034b678034f14def5049c"
+      },
+      {
+        "file": "03_spatial_signature.svg",
+        "sha256": "f8102cfdc198a19e04c39442f74f9093988abf35b3a091b4eb25c1163ccd8cfe"
+      },
+      {
+        "file": "04_type_pareto.svg",
+        "sha256": "f50a42559f19e0a4440568059057afa6e890276a15d5edd4f64ad22417db3fc2"
+      },
+      {
+        "file": "05_inspection_funnel.svg",
+        "sha256": "8b61bb0a965de3a87417a0b85e74e2dbb7e688cd855e6080b4ea1c1e212ea312"
+      },
+      {
+        "file": "06_tool_split.svg",
+        "sha256": "8253ad2fea4e2ae195b26a7ddf1d0de485b4cebfafce493adc50056666ed76de"
+      },
+      {
+        "file": "07_inspection_trust.svg",
+        "sha256": "4db97f52bf5c9ead2894811049d6643bf9c3ff433f33dc4e9308c8ea1cf43cfa"
+      },
+      {
+        "file": "08_weekly_actions.svg",
+        "sha256": "e2c3e5ef4a2b4aa59e0c0f0123e62d973500ab70aba5c6e4688add3f78b0977a"
+      }
+    ]
+  },
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "warnings": 0,
+    "errors": 0
+  },
+  "issue_types": {},
+  "categories": {
+    "blocking": {
+      "count": 0,
+      "issues": []
+    },
+    "introduced": {
+      "count": 0,
+      "issues": []
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {},
+    "fonts": {},
+    "sizes": {}
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_cover.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/01_cover.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 12,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "f4aafd9ceee2677615697321f8d660d844797688651dcd4fe600d65d9f4925b0"
+    },
+    {
+      "file": "02_executive_summary.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/02_executive_summary.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 20,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "cfafab2c2b806bdc0e4060087061cb0eeef3f106977034b678034f14def5049c"
+    },
+    {
+      "file": "03_spatial_signature.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/03_spatial_signature.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 18,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "f8102cfdc198a19e04c39442f74f9093988abf35b3a091b4eb25c1163ccd8cfe"
+    },
+    {
+      "file": "04_type_pareto.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/04_type_pareto.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 28,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "f50a42559f19e0a4440568059057afa6e890276a15d5edd4f64ad22417db3fc2"
+    },
+    {
+      "file": "05_inspection_funnel.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/05_inspection_funnel.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 15,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "8b61bb0a965de3a87417a0b85e74e2dbb7e688cd855e6080b4ea1c1e212ea312"
+    },
+    {
+      "file": "06_tool_split.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/06_tool_split.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 24,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "8253ad2fea4e2ae195b26a7ddf1d0de485b4cebfafce493adc50056666ed76de"
+    },
+    {
+      "file": "07_inspection_trust.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/07_inspection_trust.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 16,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "4db97f52bf5c9ead2894811049d6643bf9c3ff433f33dc4e9308c8ea1cf43cfa"
+    },
+    {
+      "file": "08_weekly_actions.svg",
+      "path": "/workspace/projects/immersion_defect_inspection_weekly_redwhite_ppt169_20260814/svg_output/08_weekly_actions.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 15,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "e2c3e5ef4a2b4aa59e0c0f0123e62d973500ab70aba5c6e4688add3f78b0977a"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "final",
+  "target": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "8db7366b1c036ab904fe1f07558572655b2765989e24dbae899b8adc5ac11d23",
+    "file_count": 8,
+    "files": [
+      {
+        "file": "01_cover.svg",
+        "sha256": "d62085d61a71df9157c42866fb65dce64f3088a94134c42ffb10f30eb9df5a35"
+      },
+      {
+        "file": "02_executive_summary.svg",
+        "sha256": "b6a1a6fb0c875de3630c7406b43490ab6fc856fd608de2c7ccdb7996ba4ce68d"
+      },
+      {
+        "file": "03_workstream_architecture.svg",
+        "sha256": "df7f04ea5eadc94cb52c80ba9e96f80b40597211731a36d3ac651fd29110ae49"
+      },
+      {
+        "file": "04_workstream_progress.svg",
+        "sha256": "b8b1936d45a388fcf5f09ac9969b996e6998759a977a1b54981e5b05c03a2fbe"
+      },
+      {
+        "file": "05_inspection_strategy.svg",
+        "sha256": "d804b581cba4683b328b8fe9d545f12bb7f5607ca14b8237f21e0a61310a054f"
+      },
+      {
+        "file": "06_tool_health.svg",
+        "sha256": "0d5116d6d497d7ed128ed6485a4b4089ef2963885e431fde3fd642b32c7569aa"
+      },
+      {
+        "file": "07_risks.svg",
+        "sha256": "89f1b69499958c54c2c5357b208f970267e6857b8798dcb0760a76e084139677"
+      },
+      {
+        "file": "08_decisions.svg",
+        "sha256": "545f2f060756d73101877a4c81254b999235e083d7c8ceedca1ebcaf62d61406"
+      }
+    ]
+  },
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "warnings": 0,
+    "errors": 0
+  },
+  "issue_types": {},
+  "categories": {
+    "blocking": {
+      "count": 0,
+      "issues": []
+    },
+    "introduced": {
+      "count": 0,
+      "issues": []
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {},
+    "fonts": {},
+    "sizes": {}
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_cover.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/01_cover.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 13,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "d62085d61a71df9157c42866fb65dce64f3088a94134c42ffb10f30eb9df5a35"
+    },
+    {
+      "file": "02_executive_summary.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/02_executive_summary.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 18,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "b6a1a6fb0c875de3630c7406b43490ab6fc856fd608de2c7ccdb7996ba4ce68d"
+    },
+    {
+      "file": "03_workstream_architecture.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/03_workstream_architecture.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 17,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "df7f04ea5eadc94cb52c80ba9e96f80b40597211731a36d3ac651fd29110ae49"
+    },
+    {
+      "file": "04_workstream_progress.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/04_workstream_progress.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 17,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "b8b1936d45a388fcf5f09ac9969b996e6998759a977a1b54981e5b05c03a2fbe"
+    },
+    {
+      "file": "05_inspection_strategy.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/05_inspection_strategy.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 17,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "d804b581cba4683b328b8fe9d545f12bb7f5607ca14b8237f21e0a61310a054f"
+    },
+    {
+      "file": "06_tool_health.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/06_tool_health.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 18,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "0d5116d6d497d7ed128ed6485a4b4089ef2963885e431fde3fd642b32c7569aa"
+    },
+    {
+      "file": "07_risks.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/07_risks.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 17,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "89f1b69499958c54c2c5357b208f970267e6857b8798dcb0760a76e084139677"
+    },
+    {
+      "file": "08_decisions.svg",
+      "path": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814/svg_output/08_decisions.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "fonts": [
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
+        ],
+        "text_elements": 25,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "545f2f060756d73101877a4c81254b999235e083d7c8ceedca1ebcaf62d61406"
+    }
+  ]
+}
