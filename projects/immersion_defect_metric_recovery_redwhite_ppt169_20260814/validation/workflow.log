@@ -1,0 +1,125 @@
+
+=== 2026-08-14T05:00:51.194Z NOTE id=f235fcec76bd ===
+Project initialized: profile=default; canvas=ppt169; path=/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814
+
+=== 2026-08-14T05:00:58.900Z PYTHON run=87d76e6c7e26 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/project_manager.py", "import-sources", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "/workspace/projects/immersion_defect_metric_recovery_ppt169_20260814/sources"]
+stderr:
+  note: /workspace/projects/immersion_defect_metric_recovery_ppt169_20260814/sources/immersion_defect_metric_recovery_source.md is under projects/; moved into the target project. Pass --copy to preserve it.
+  note: /workspace/projects/immersion_defect_metric_recovery_ppt169_20260814/sources/immersion_litho_defect_weekly_research.facts.json is under projects/; moved into the target project. Pass --copy to preserve it.
+  note: /workspace/projects/immersion_defect_metric_recovery_ppt169_20260814/sources/immersion_litho_defect_weekly_research.md is under projects/; moved into the target project. Pass --copy to preserve it.
+stdout:
+  [OK] Imported sources into: /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814
+=== 2026-08-14T05:00:59.191Z END run=87d76e6c7e26 elapsed_ms=291 output_lines=15 retained=4 omitted=11 ===
+
+=== 2026-08-14T05:02:16.767Z PYTHON run=73eaad309541 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/svg_editor/server.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "--live", "--daemon"]
+stderr:
+  [05:02:17] [INFO] svg_editor: started live preview in background: http://127.0.0.1:5054 (pid=17899)
+  [05:02:17] [INFO] svg_editor: log: /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/live_preview/server.log
+=== 2026-08-14T05:02:17.097Z END run=73eaad309541 elapsed_ms=330 output_lines=2 retained=2 omitted=0 ===
+
+=== 2026-08-14T05:02:32.460Z PYTHON run=cb650f4c24cd ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.background=#FFFFFF"]
+=== 2026-08-14T05:02:32.528Z END run=cb650f4c24cd elapsed_ms=68 output_lines=10 retained=0 omitted=10 ===
+
+=== 2026-08-14T05:02:32.607Z PYTHON run=243728d7d89f ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.secondary_bg=#F8F4F4"]
+=== 2026-08-14T05:02:32.677Z END run=243728d7d89f elapsed_ms=70 output_lines=6 retained=0 omitted=6 ===
+
+=== 2026-08-14T05:02:32.758Z PYTHON run=9381fec54b0e ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.primary=#C00000"]
+=== 2026-08-14T05:02:32.830Z END run=9381fec54b0e elapsed_ms=71 output_lines=10 retained=0 omitted=10 ===
+
+=== 2026-08-14T05:02:32.912Z PYTHON run=2fdd8bf29ddf ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.accent=#A00000"]
+=== 2026-08-14T05:02:32.983Z END run=2fdd8bf29ddf elapsed_ms=71 output_lines=9 retained=0 omitted=9 ===
+
+=== 2026-08-14T05:02:33.061Z PYTHON run=17e5f9a5bd18 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.secondary_accent=#C00000"]
+=== 2026-08-14T05:02:33.129Z END run=17e5f9a5bd18 elapsed_ms=68 output_lines=8 retained=0 omitted=8 ===
+
+=== 2026-08-14T05:02:33.206Z PYTHON run=107f5eee364f ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.body_text=#222222"]
+=== 2026-08-14T05:02:33.276Z END run=107f5eee364f elapsed_ms=69 output_lines=10 retained=0 omitted=10 ===
+
+=== 2026-08-14T05:02:33.354Z PYTHON run=ad92e3b8c631 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.grid=#E8E8E8"]
+=== 2026-08-14T05:02:33.424Z END run=ad92e3b8c631 elapsed_ms=69 output_lines=10 retained=0 omitted=10 ===
+
+=== 2026-08-14T05:02:33.501Z PYTHON run=9dc092bdc0f9 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.muted_text=#6B6B6B"]
+=== 2026-08-14T05:02:33.570Z END run=9dc092bdc0f9 elapsed_ms=69 output_lines=10 retained=0 omitted=10 ===
+
+=== 2026-08-14T05:02:33.648Z PYTHON run=60a6fcad3b55 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.blocking=#7A0000"]
+=== 2026-08-14T05:02:33.716Z END run=60a6fcad3b55 elapsed_ms=67 output_lines=8 retained=0 omitted=8 ===
+
+=== 2026-08-14T05:03:22.832Z PYTHON run=9522e0d82ef1 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/project_manager.py", "validate", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [OK] Project structure is complete.
+=== 2026-08-14T05:03:23.171Z END run=9522e0d82ef1 elapsed_ms=338 output_lines=3 retained=1 omitted=2 ===
+
+=== 2026-08-14T05:03:41.212Z PYTHON run=26720f0418d7 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/svg_quality_checker.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "--stage", "final", "--json"]
+stdout:
+  [OK] 01_cover.svg - Passed
+  [WARN] 04_lever_split.svg - Passed (with warnings)
+     [WARN] Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=884, y=430; text='捕获率 84%→91%假回收已从曲线剔除'); use supported explicit text positioning when page fit matters
+  [SUMMARY] Check Summary
+  Total files: 8
+    [OK] Fully passed: 7 (87%)
+    [WARN] With warnings: 1 (12%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 1        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  Contextual values beyond spec_lock anchors (informational):
+    Font families:
+      Consolas, Microsoft YaHei, monospace  (8 files)
+  [REPORT] JSON quality report exported: /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/validation/svg_quality_report.json
+=== 2026-08-14T05:03:41.721Z END run=26720f0418d7 elapsed_ms=508 output_lines=46 retained=17 omitted=29 ===
+
+=== 2026-08-14T05:04:04.212Z PYTHON run=7568b53d02f7 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/total_md_split.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [OK] SVG files and notes have one-to-one correspondence
+  [Done] Successfully generated 8/8 file(s)
+  [Done] Notes splitting complete
+=== 2026-08-14T05:04:04.216Z END run=7568b53d02f7 elapsed_ms=3 output_lines=17 retained=3 omitted=14 ===
+
+=== 2026-08-14T05:04:07.598Z PYTHON run=d92494fcd762 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/finalize_svg.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [OK] 04_lever_split.svg (1 icons)
+  [OK] Done!
+=== 2026-08-14T05:04:07.840Z END run=d92494fcd762 elapsed_ms=242 output_lines=13 retained=2 omitted=11 ===
+
+=== 2026-08-14T05:04:10.930Z PYTHON run=30a604232dd0 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "skills/ppt-master/scripts/svg_to_pptx.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [Done] Saved: /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/exports/immersion_defect_metric_recovery_redwhite_20260814_050411.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=8 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=1
+    [PPTX] /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/exports/immersion_defect_metric_recovery_redwhite_20260814_050411.pptx
+    [REPORT] /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/validation/immersion_defect_metric_recovery_redwhite_20260814_050411.report.json
+=== 2026-08-14T05:04:11.578Z END run=30a604232dd0 elapsed_ms=648 output_lines=41 retained=5 omitted=36 ===
