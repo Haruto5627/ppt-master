@@ -18,28 +18,28 @@
 ## visual_style
 - visual_style: custom
 - visual_style_references: swiss-minimal, blueprint
-- visual_style_behavior: 纯白工程图纸底；细网格与尺寸线；标题与主结构线用 #C00000；正文深灰 #222222；完成用暗红 #A00000，风险与待办用标题红，阻塞用 #7A0000；状态只用红/灰，不用青绿或琥珀。
+- visual_style_behavior: 纯白工程图纸底；标题 #C00000；结构线与图纸标注 #87D9F5；完成用派生蓝 #3D9EC4；浅底 #E7F6FB；网格 #D4EEF6；风险与阻塞保持红系；正文 #222222。中文微软雅黑，英文 Times New Roman。
 
 ## colors
 - background: #FFFFFF
-- secondary_bg: #F8F4F4
+- secondary_bg: #E7F6FB
 - primary: #C00000
-- accent: #A00000
-- secondary_accent: #C00000
+- accent: #87D9F5
+- secondary_accent: #3D9EC4
 - body_text: #222222
-- grid: #E8E8E8
+- grid: #D4EEF6
 - muted_text: #6B6B6B
 - blocking: #7A0000
 
 ## typography
-- font_family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif
-- title_family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif
-- body_family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif
-- data_family: Consolas, "Microsoft YaHei", "微软雅黑", monospace
+- font_family: "Times New Roman", "Microsoft YaHei", "微软雅黑"
+- title_family: "Times New Roman", "Microsoft YaHei", "微软雅黑"
+- body_family: "Times New Roman", "Microsoft YaHei", "微软雅黑"
+- data_family: "Times New Roman", "Microsoft YaHei", "微软雅黑"
 - body: 24
-- title: 42
-- subtitle: 32
-- lead: 30
+- title: 36
+- subtitle: 28
+- lead: 28
 - data: 20
 - annotation: 18
 - footnote: 16

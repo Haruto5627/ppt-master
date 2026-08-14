@@ -4,40 +4,40 @@
   "target": "/workspace/projects/immersion_defect_project_progress_redwhite_ppt169_20260814",
   "source_fingerprint": {
     "algorithm": "sha256",
-    "digest": "56acdc8fcb30b1301fa93b6cf53dbc499a0a50a4ab1a836a46e80b2ea7f170de",
+    "digest": "8db7366b1c036ab904fe1f07558572655b2765989e24dbae899b8adc5ac11d23",
     "file_count": 8,
     "files": [
       {
         "file": "01_cover.svg",
-        "sha256": "44fb2330cec8765c4c4ba88d2140e6ee240c9029bd725d07f4c1f3fc977c6443"
+        "sha256": "d62085d61a71df9157c42866fb65dce64f3088a94134c42ffb10f30eb9df5a35"
       },
       {
         "file": "02_executive_summary.svg",
-        "sha256": "225846488d598a4d1bd6a557ed7dcbfa2d85e568664d5201c47a6a4487d3d1f1"
+        "sha256": "b6a1a6fb0c875de3630c7406b43490ab6fc856fd608de2c7ccdb7996ba4ce68d"
       },
       {
         "file": "03_workstream_architecture.svg",
-        "sha256": "ec01b7c8752c4022d20748cea727c56e63e2b84e8bdabc0705141b706c5a8959"
+        "sha256": "df7f04ea5eadc94cb52c80ba9e96f80b40597211731a36d3ac651fd29110ae49"
       },
       {
         "file": "04_workstream_progress.svg",
-        "sha256": "05b041c8908426c6357ed04d94adc66a45993555f29b19617b0fd715a75eb5da"
+        "sha256": "b8b1936d45a388fcf5f09ac9969b996e6998759a977a1b54981e5b05c03a2fbe"
       },
       {
         "file": "05_inspection_strategy.svg",
-        "sha256": "1ece43e3488c2f2d5c0af354577a8aad0e78743f461c141bf1b2cc650648e48e"
+        "sha256": "d804b581cba4683b328b8fe9d545f12bb7f5607ca14b8237f21e0a61310a054f"
       },
       {
         "file": "06_tool_health.svg",
-        "sha256": "8f90f19222db13e39b844b9035ff9899c616f8a69b2bc5e2f8df27c474b4b195"
+        "sha256": "0d5116d6d497d7ed128ed6485a4b4089ef2963885e431fde3fd642b32c7569aa"
       },
       {
         "file": "07_risks.svg",
-        "sha256": "b0320ad499ac50194ad2e44f92494da8aad64b156028146ddc17d45a4d863fb1"
+        "sha256": "89f1b69499958c54c2c5357b208f970267e6857b8798dcb0760a76e084139677"
       },
       {
         "file": "08_decisions.svg",
-        "sha256": "1a874168a96c4ebbb81f976c5c129da10e50db4f03e6019e7aab62bc864530b3"
+        "sha256": "545f2f060756d73101877a4c81254b999235e083d7c8ceedca1ebcaf62d61406"
       }
     ]
   },
@@ -71,37 +71,8 @@
   },
   "drift": {
     "colors": {},
-    "fonts": {
-      "Consolas, Microsoft YaHei, monospace": [
-        "01_cover.svg",
-        "02_executive_summary.svg",
-        "03_workstream_architecture.svg",
-        "04_workstream_progress.svg",
-        "05_inspection_strategy.svg",
-        "06_tool_health.svg",
-        "07_risks.svg",
-        "08_decisions.svg"
-      ],
-      "Microsoft YaHei, Arial, sans-serif": [
-        "01_cover.svg",
-        "02_executive_summary.svg",
-        "03_workstream_architecture.svg",
-        "04_workstream_progress.svg",
-        "05_inspection_strategy.svg",
-        "06_tool_health.svg",
-        "07_risks.svg",
-        "08_decisions.svg"
-      ]
-    },
-    "sizes": {
-      "56": [
-        "02_executive_summary.svg",
-        "05_inspection_strategy.svg"
-      ],
-      "72": [
-        "01_cover.svg"
-      ]
-    }
+    "fonts": {},
+    "sizes": {}
   },
   "project_issues": {
     "template": [],
@@ -120,23 +91,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 13,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        },
-        "sparse_typography_sizes": {
-          "72": 1
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "44fb2330cec8765c4c4ba88d2140e6ee240c9029bd725d07f4c1f3fc977c6443"
+      "source_sha256": "d62085d61a71df9157c42866fb65dce64f3088a94134c42ffb10f30eb9df5a35"
     },
     {
       "file": "02_executive_summary.svg",
@@ -147,23 +108,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 18,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        },
-        "sparse_typography_sizes": {
-          "56": 2
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "225846488d598a4d1bd6a557ed7dcbfa2d85e568664d5201c47a6a4487d3d1f1"
+      "source_sha256": "b6a1a6fb0c875de3630c7406b43490ab6fc856fd608de2c7ccdb7996ba4ce68d"
     },
     {
       "file": "03_workstream_architecture.svg",
@@ -174,20 +125,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 17,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "ec01b7c8752c4022d20748cea727c56e63e2b84e8bdabc0705141b706c5a8959"
+      "source_sha256": "df7f04ea5eadc94cb52c80ba9e96f80b40597211731a36d3ac651fd29110ae49"
     },
     {
       "file": "04_workstream_progress.svg",
@@ -198,20 +142,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 17,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "05b041c8908426c6357ed04d94adc66a45993555f29b19617b0fd715a75eb5da"
+      "source_sha256": "b8b1936d45a388fcf5f09ac9969b996e6998759a977a1b54981e5b05c03a2fbe"
     },
     {
       "file": "05_inspection_strategy.svg",
@@ -222,23 +159,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 17,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        },
-        "sparse_typography_sizes": {
-          "56": 2
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "1ece43e3488c2f2d5c0af354577a8aad0e78743f461c141bf1b2cc650648e48e"
+      "source_sha256": "d804b581cba4683b328b8fe9d545f12bb7f5607ca14b8237f21e0a61310a054f"
     },
     {
       "file": "06_tool_health.svg",
@@ -249,20 +176,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 18,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "8f90f19222db13e39b844b9035ff9899c616f8a69b2bc5e2f8df27c474b4b195"
+      "source_sha256": "0d5116d6d497d7ed128ed6485a4b4089ef2963885e431fde3fd642b32c7569aa"
     },
     {
       "file": "07_risks.svg",
@@ -273,20 +193,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 17,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "b0320ad499ac50194ad2e44f92494da8aad64b156028146ddc17d45a4d863fb1"
+      "source_sha256": "89f1b69499958c54c2c5357b208f970267e6857b8798dcb0760a76e084139677"
     },
     {
       "file": "08_decisions.svg",
@@ -297,20 +210,13 @@
       "info": {
         "viewbox": "0 0 1280 720",
         "fonts": [
-          "Consolas, Microsoft YaHei, monospace",
-          "Microsoft YaHei, Arial, sans-serif"
+          "\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""
         ],
         "text_elements": 25,
-        "tspan_elements": 0,
-        "contextual_values": {
-          "font_families": [
-            "Consolas, Microsoft YaHei, monospace",
-            "Microsoft YaHei, Arial, sans-serif"
-          ]
-        }
+        "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "1a874168a96c4ebbb81f976c5c129da10e50db4f03e6019e7aab62bc864530b3"
+      "source_sha256": "545f2f060756d73101877a4c81254b999235e083d7c8ceedca1ebcaf62d61406"
     }
   ]
 }

@@ -123,3 +123,79 @@ stdout:
     [PPTX] /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/exports/immersion_defect_metric_recovery_redwhite_20260814_050411.pptx
     [REPORT] /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/validation/immersion_defect_metric_recovery_redwhite_20260814_050411.report.json
 === 2026-08-14T05:04:11.578Z END run=30a604232dd0 elapsed_ms=648 output_lines=41 retained=5 omitted=36 ===
+
+=== 2026-08-14T06:21:34.457Z PYTHON run=a88d08e1ff51 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.secondary_bg=#E7F6FB"]
+=== 2026-08-14T06:21:34.529Z END run=a88d08e1ff51 elapsed_ms=72 output_lines=6 retained=0 omitted=6 ===
+
+=== 2026-08-14T06:21:34.607Z PYTHON run=be81efe3df85 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.grid=#D4EEF6"]
+=== 2026-08-14T06:21:34.674Z END run=be81efe3df85 elapsed_ms=67 output_lines=10 retained=0 omitted=10 ===
+
+=== 2026-08-14T06:21:34.752Z PYTHON run=d36549cbcacb ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "colors.accent=#3D9EC4"]
+=== 2026-08-14T06:21:34.820Z END run=d36549cbcacb elapsed_ms=68 output_lines=9 retained=0 omitted=9 ===
+
+=== 2026-08-14T06:22:30.916Z PYTHON run=f12ac2cf2af8 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/update_spec.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "typography.font_family=\"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\""]
+=== 2026-08-14T06:22:30.986Z END run=f12ac2cf2af8 elapsed_ms=70 output_lines=13 retained=0 omitted=13 ===
+
+=== 2026-08-14T06:23:07.995Z PYTHON run=4b7f182d8b21 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/project_manager.py", "validate", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [OK] Project structure is complete.
+=== 2026-08-14T06:23:08.323Z END run=4b7f182d8b21 elapsed_ms=328 output_lines=3 retained=1 omitted=2 ===
+
+=== 2026-08-14T06:23:13.905Z PYTHON run=86b36616e658 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/svg_quality_checker.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814", "--stage", "final", "--json"]
+stdout:
+  [OK] 01_cover.svg - Passed
+  [WARN] 04_lever_split.svg - Passed (with warnings)
+     [WARN] Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=884, y=430; text='捕获率 84%→91%假回收已从曲线剔除'); use supported explicit text positioning when page fit matters
+  [SUMMARY] Check Summary
+  Total files: 8
+    [OK] Fully passed: 7 (87%)
+    [WARN] With warnings: 1 (12%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 1        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [OK] spec_lock anchor comparison: no additional contextual colors/fonts or out-of-band font sizes
+  [REPORT] JSON quality report exported: /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/validation/svg_quality_report.json
+=== 2026-08-14T06:23:14.463Z END run=86b36616e658 elapsed_ms=557 output_lines=38 retained=15 omitted=23 ===
+
+=== 2026-08-14T06:23:36.236Z PYTHON run=bd7bdf54b88c ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/total_md_split.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [OK] SVG files and notes have one-to-one correspondence
+  [Done] Successfully generated 8/8 file(s)
+  [Done] Notes splitting complete
+=== 2026-08-14T06:23:36.240Z END run=bd7bdf54b88c elapsed_ms=3 output_lines=17 retained=3 omitted=14 ===
+
+=== 2026-08-14T06:23:45.339Z PYTHON run=6eb1a13f9ba0 ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/finalize_svg.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [OK] 04_lever_split.svg (1 icons)
+  [OK] Done!
+=== 2026-08-14T06:23:45.586Z END run=6eb1a13f9ba0 elapsed_ms=247 output_lines=13 retained=2 omitted=11 ===
+
+=== 2026-08-14T06:23:56.520Z PYTHON run=8db7c2015aec ===
+cwd: /workspace
+argv: ["/usr/bin/python3", "/workspace/skills/ppt-master/scripts/svg_to_pptx.py", "/workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814"]
+stdout:
+  [Done] Saved: /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/exports/immersion_defect_metric_recovery_redwhite_20260814_062356.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=8 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=1
+    [PPTX] /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/exports/immersion_defect_metric_recovery_redwhite_20260814_062356.pptx
+    [REPORT] /workspace/projects/immersion_defect_metric_recovery_redwhite_ppt169_20260814/validation/immersion_defect_metric_recovery_redwhite_20260814_062356.report.json
+=== 2026-08-14T06:23:57.187Z END run=8db7c2015aec elapsed_ms=667 output_lines=41 retained=5 omitted=36 ===

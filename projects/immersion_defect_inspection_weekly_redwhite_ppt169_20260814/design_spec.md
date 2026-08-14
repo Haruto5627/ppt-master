@@ -17,7 +17,7 @@
 | Artifact Afterlife | 作为当周检测基线、SEM 分类口径和动作闭环记录 |
 | Reading Mode | balanced |
 | Content Strategy | 可在不改变演示用虚构数据口径的前提下重组和可视化；机制名称保持文献词汇 |
-| Design Style | 红白工程图纸：纯白底板、标题 rgb(192,0,0)、细网格与尺寸线；状态只用红/灰 |
+| Design Style | 红白蓝工程图纸：纯白底板、标题 rgb(192,0,0)、结构蓝 rgb(135,217,245) 及同色派生；中文微软雅黑、英文 Times New Roman |
 | Formula Policy | text-only |
 | AI Image Acquisition Path | not applicable |
 | Generation Mode | continuous |
@@ -44,20 +44,20 @@
 - **Mode**: pyramid
 - **Visual style**: custom
 - **Visual style references**: swiss-minimal, blueprint
-- **Theme**: 纯白工程图纸底；细网格与技术标注组织全篇；标题与主结构线 #C00000；完成暗红 #A00000，风险/待办标题红，阻塞 #7A0000；正文 #222222。
-- **Tone**: 专业、克制、可审计；像白底工程图纸而非营销页。
+- **Theme**: 纯白工程图纸底；标题 #C00000；结构线/标注蓝 #87D9F5；完成用派生蓝 #3D9EC4；浅底 #E7F6FB；网格 #D4EEF6；风险与阻塞保持红系；正文 #222222。
+- **Tone**: 专业、克制、可审计；白底红标题，蓝线作图纸结构。
 
 ### Color Scheme
 
 | Role | HEX | Purpose |
 | --- | --- | --- |
 | Background | #FFFFFF | 主画布纯白底板 |
-| Secondary background | #F8F4F4 | 分区与浅底 |
-| Primary | #C00000 | 标题与主结构线 |
-| Accent | #A00000 | 完成、基线内、正向 |
-| Secondary accent | #C00000 | 风险、超限、待动作 |
-| Body text | #222222 | 主体文本与关键数字 |
-| Grid | #E8E8E8 | 背景网格 |
+| Secondary background | #E7F6FB | 分区浅底（蓝 15% 派生） |
+| Primary | #C00000 | 标题、风险与红标 |
+| Accent | #87D9F5 | 结构线、图纸标注蓝 |
+| Secondary accent | #3D9EC4 | 完成、基线内（蓝加深派生） |
+| Body text | #222222 | 主体文本 |
+| Grid | #D4EEF6 | 背景网格（蓝浅派生） |
 | Muted text | #6B6B6B | 注释与来源 |
 | Blocking | #7A0000 | 明确阻塞与 killer lot |
 
@@ -67,23 +67,22 @@
 
 | Role | Character (Reference) | Primary | English if non-English | Fallback tail |
 | --- | --- | --- | --- | --- |
-| Title | clean engineering sans / bold | Microsoft YaHei | Arial | 微软雅黑, sans-serif |
-| Body | clean engineering sans / regular | Microsoft YaHei | Arial | 微软雅黑, sans-serif |
-| Data | technical monospace | Consolas | Consolas | Microsoft YaHei, monospace |
+| Title | CJK grotesque + Latin serif | Microsoft YaHei | Times New Roman | 微软雅黑 |
+| Body | CJK grotesque + Latin serif | Microsoft YaHei | Times New Roman | 微软雅黑 |
+| Data | same bilingual stack | Microsoft YaHei | Times New Roman | 微软雅黑 |
 
-- **Title stack**: `"Microsoft YaHei", "微软雅黑", Arial, sans-serif`
-- **Body stack**: `"Microsoft YaHei", "微软雅黑", Arial, sans-serif`
-- **Data stack**: `Consolas, "Microsoft YaHei", "微软雅黑", monospace`
-- **Role rationale**: Data is recurring across D0, lot IDs, tool codes and dates.
+- **Title stack**: `"Times New Roman", "Microsoft YaHei", "微软雅黑"`
+- **Body stack**: `"Times New Roman", "Microsoft YaHei", "微软雅黑"`
+- **Data stack**: `"Times New Roman", "Microsoft YaHei", "微软雅黑"`
+- **Role rationale**: 英文/数字走 Times New Roman，中文回落到微软雅黑。导出时 latin/ea 分面。
 
 ### Font Size Hierarchy
 
 | Purpose | Anchor Size (px) |
 | --- | ---: |
+| Title | 36 |
+| Subtitle | 28 |
 | Body | 24 |
-| Title | 42 |
-| Subtitle | 32 |
-| Lead | 30 |
 | Data | 20 |
 | Annotation | 18 |
 | Footnote | 16 |
