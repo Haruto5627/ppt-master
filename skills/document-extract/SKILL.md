@@ -178,17 +178,15 @@ stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改
 用户要把 `.md` 做成可分发 HTML 时，用 [`pandoc-css/`](pandoc-css/) 里的**独立 CSS 源文件**，不要再去网上拼一套。
 
 ```bash
-pandoc 报告.md -s --embed-resources --toc --css=skills/document-extract/pandoc-css/github-doc.css -o 报告.html
+pandoc 报告.md -s --embed-resources --toc --css=skills/document-extract/pandoc-css/fresh-mint.css -o 报告.html
 ```
 
 | CSS | 适用 |
 |---|---|
-| `github-doc.css` | 技术说明、仓库 README 感 |
-| `tufte-essay.css` | 论文、随笔、讲义 |
-| `sakura-warm.css` | 轻量阅读、个人笔记 |
-| `pico-product.css` | 产品手册、接口说明 |
-| `nord-night.css` | 深色、工程日志 |
-| `songti-report.css` | 中文报告、纪要 |
-| `swiss-plain.css` | 封面感强的短文/海报式文档 |
+| `fresh-mint.css` | 默认清新：薄荷绿卡片 |
+| `fresh-sky.css` | 天空蓝 |
+| `fresh-peach.css` | 蜜桃粉 |
+| `fresh-lilac.css` | 丁香紫 |
+| `fresh-latte.css` | Catppuccin Latte 奶茶 |
 
-用户指定风格则用对应文件；未指定时中文报告用 `songti-report.css`，其余默认 `github-doc.css`。只交付 CSS / HTML，不要改回 Office 原件。
+用户指定颜色则用对应文件；未指定时用 `fresh-mint.css`。旧主题在 [`pandoc-css/classic/`](pandoc-css/classic/)，仅在用户明确要「GitHub / 公文 / 深色」时再用。只交付 CSS / HTML，不要改回 Office 原件。

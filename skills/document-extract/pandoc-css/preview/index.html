@@ -3,69 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pandoc CSS 预览</title>
+  <title>清新 CSS 预览</title>
   <style>
-    body {
-      font-family: "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
-      margin: 1.5rem auto 3rem;
-      max-width: 72rem;
-      line-height: 1.5;
-    }
-    h1 { font-size: 1.4rem; margin: 0 0 0.4rem; }
-    .lead { color: #555; margin: 0 0 1.4rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-      gap: 1rem;
-    }
-    figure {
-      margin: 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fafafa;
-    }
-    figcaption {
-      padding: 0.65rem 0.8rem 0.75rem;
-      border-top: 1px solid #eee;
-    }
-    figcaption a { font-weight: 700; color: inherit; text-decoration: none; }
-    figcaption a:hover { color: #0969da; }
-    figcaption span { display: block; color: #666; font-size: 0.85rem; }
-    img { display: block; width: 100%; height: auto; background: #fff; }
+    body { font-family: "Noto Sans CJK SC", sans-serif; margin: 1.5rem auto 3rem; max-width: 72rem; }
+    h1 { font-size: 1.35rem; margin: 0 0 .4rem; }
+    .lead { color: #5b6b66; margin: 0 0 1.3rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: 1rem; }
+    figure { margin: 0; border: 1px solid #d7efe6; border-radius: 16px; overflow: hidden; background: #fff; }
+    figcaption { padding: .65rem .8rem .75rem; }
+    figcaption a { font-weight: 700; color: #14685c; text-decoration: none; }
+    figcaption span { display: block; color: #6b7c75; font-size: .85rem; }
+    img { display: block; width: 100%; height: auto; }
   </style>
 </head>
 <body>
-  <h1>Pandoc CSS 预览</h1>
-  <p class="lead">同一份 <code>sample.md</code>，七套主题。点标题打开对应的独立 HTML。</p>
+  <h1>清新卡片预览</h1>
+  <p class="lead">同一份 sample.md。点标题打开独立 HTML。</p>
   <div class="grid">
     <figure>
-      <a href="github-doc.html"><img src="github-doc.png" alt="GitHub 文档" /></a>
-      <figcaption><a href="github-doc.html">GitHub 文档</a><span>github-doc.css</span></figcaption>
+      <a href="fresh-mint.html"><img src="fresh-mint.png" alt="薄荷绿" /></a>
+      <figcaption><a href="fresh-mint.html">薄荷绿</a><span>fresh-mint.css</span></figcaption>
     </figure>
     <figure>
-      <a href="tufte-essay.html"><img src="tufte-essay.png" alt="Tufte 随笔" /></a>
-      <figcaption><a href="tufte-essay.html">Tufte 随笔</a><span>tufte-essay.css</span></figcaption>
+      <a href="fresh-sky.html"><img src="fresh-sky.png" alt="天空蓝" /></a>
+      <figcaption><a href="fresh-sky.html">天空蓝</a><span>fresh-sky.css</span></figcaption>
     </figure>
     <figure>
-      <a href="sakura-warm.html"><img src="sakura-warm.png" alt="Sakura 暖灰" /></a>
-      <figcaption><a href="sakura-warm.html">Sakura 暖灰</a><span>sakura-warm.css</span></figcaption>
+      <a href="fresh-peach.html"><img src="fresh-peach.png" alt="蜜桃粉" /></a>
+      <figcaption><a href="fresh-peach.html">蜜桃粉</a><span>fresh-peach.css</span></figcaption>
     </figure>
     <figure>
-      <a href="pico-product.html"><img src="pico-product.png" alt="Pico 产品" /></a>
-      <figcaption><a href="pico-product.html">Pico 产品</a><span>pico-product.css</span></figcaption>
+      <a href="fresh-lilac.html"><img src="fresh-lilac.png" alt="丁香紫" /></a>
+      <figcaption><a href="fresh-lilac.html">丁香紫</a><span>fresh-lilac.css</span></figcaption>
     </figure>
     <figure>
-      <a href="nord-night.html"><img src="nord-night.png" alt="Nord 深色" /></a>
-      <figcaption><a href="nord-night.html">Nord 深色</a><span>nord-night.css</span></figcaption>
-    </figure>
-    <figure>
-      <a href="songti-report.html"><img src="songti-report.png" alt="宋体报告" /></a>
-      <figcaption><a href="songti-report.html">宋体报告</a><span>songti-report.css</span></figcaption>
-    </figure>
-    <figure>
-      <a href="swiss-plain.html"><img src="swiss-plain.png" alt="瑞士平面" /></a>
-      <figcaption><a href="swiss-plain.html">瑞士平面</a><span>swiss-plain.css</span></figcaption>
+      <a href="fresh-latte.html"><img src="fresh-latte.png" alt="Latte 奶茶" /></a>
+      <figcaption><a href="fresh-latte.html">Latte 奶茶</a><span>fresh-latte.css</span></figcaption>
     </figure>
   </div>
 </body>
