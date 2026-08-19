@@ -20,4 +20,6 @@ pandoc 报告.md -s --embed-resources --toc --css=github-doc.css -o 报告.html
 
 `--embed-resources` 会把 CSS 打进 HTML，双击打开也有样式。不要 CSS 时去掉即可。
 
+本地预览：打开 [`preview/index.html`](preview/index.html)，或直接打开 `preview/*.html`。截图与 HTML 由同一份 [`sample.md`](sample.md) 经 Pandoc 生成。
+
 这些文件是按上述开源风格**重写**的 classless 主题，不是整份拷贝上游仓库。

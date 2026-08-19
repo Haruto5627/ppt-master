@@ -14,8 +14,8 @@
   --bar: #111111;
   --wash: #f4f4f4;
   --measure: 40rem;
-  --sans: Helvetica, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC",
-    "Microsoft YaHei", sans-serif;
+  --sans: Helvetica, "Helvetica Neue", Arial, "Noto Sans SC", "Noto Sans CJK SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
   --mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
 }
 

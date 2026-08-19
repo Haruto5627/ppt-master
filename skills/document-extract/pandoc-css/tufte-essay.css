@@ -16,8 +16,10 @@
   --code-bg: #f3f2ea;
   --measure: 42rem;
   --serif: "et-book", Palatino, "Palatino Linotype", "Palatino LT STD",
-    "Source Han Serif SC", "Noto Serif SC", "Songti SC", "Times New Roman", serif;
-  --sans: "Gill Sans", "Gill Sans MT", "Noto Sans SC", Calibri, sans-serif;
+    "Source Han Serif SC", "Noto Serif SC", "Noto Serif CJK SC", "Songti SC",
+    "Times New Roman", serif;
+  --sans: "Gill Sans", "Gill Sans MT", "Noto Sans SC", "Noto Sans CJK SC",
+    Calibri, sans-serif;
   --mono: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 

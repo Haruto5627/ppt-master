@@ -15,10 +15,10 @@
   --rule: #d9d0c3;
   --wash: #efe8dc;
   --measure: 40em;
-  --serif: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun",
-    "STSong", "Times New Roman", serif;
-  --sans: "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei",
-    "Heiti SC", sans-serif;
+  --serif: "Source Han Serif SC", "Noto Serif SC", "Noto Serif CJK SC",
+    "Songti SC", "SimSun", "STSong", "Times New Roman", serif;
+  --sans: "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC",
+    "PingFang SC", "Microsoft YaHei", "Heiti SC", sans-serif;
   --mono: "Sarasa Mono SC", "Noto Sans Mono CJK SC", "JetBrains Mono", Consolas, monospace;
 }
 
