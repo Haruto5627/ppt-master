@@ -2,12 +2,14 @@
 name: document-extract
 description: >
   Extract-only conversion of Word (.docx), PowerPoint (.pptx), Excel (.xlsx/.xlsm),
-  and PDF into Markdown, and dump images from Word/PPT into a sibling images/
-  folder. Use when the user asks to read, extract, convert, 提取, 读取, or 转换
-  Office/PDF files, or to 提取图片 from .docx/.pptx. Default to MarkItDown; use
-  Docling for scanned PDFs, two-column papers, complex tables, or garbled
-  MarkItDown output. Do not use for editing documents, and do not replace
-  ppt-master source intake (`source_to_md.py`) during PPT generation.
+  and PDF into Markdown, dump images from Word/PPT into a sibling images/
+  folder, and style Pandoc Markdown-to-HTML with the CSS files in pandoc-css/.
+  Use when the user asks to read, extract, convert, 提取, 读取, or 转换
+  Office/PDF files, to 提取图片 from .docx/.pptx, or to turn Markdown into HTML
+  with Pandoc CSS. Default to MarkItDown; use Docling for scanned PDFs,
+  two-column papers, complex tables, or garbled MarkItDown output. Do not use
+  for editing documents, and do not replace ppt-master source intake
+  (`source_to_md.py`) during PPT generation.
 ---
 
 # 文档提取
@@ -168,3 +170,25 @@ stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改
 - 把提取结果当成已编辑的正式稿写回原格式
 - 因为 CLI 不在 PATH 就报告「没装好」——先试 `python -m markitdown` / `python -m docling`
 - 把 Word / PPT 图片写到当前工作目录、Markdown 旁的 `_files/`，或任何不是源文件同级 `images/` 的地方
+
+---
+
+## 8. Markdown → HTML（Pandoc CSS）
+
+用户要把 `.md` 做成可分发 HTML 时，用 [`pandoc-css/`](pandoc-css/) 里的**独立 CSS 源文件**，不要再去网上拼一套。
+
+```bash
+pandoc 报告.md -s --embed-resources --toc --css=skills/document-extract/pandoc-css/github-doc.css -o 报告.html
+```
+
+| CSS | 适用 |
+|---|---|
+| `github-doc.css` | 技术说明、仓库 README 感 |
+| `tufte-essay.css` | 论文、随笔、讲义 |
+| `sakura-warm.css` | 轻量阅读、个人笔记 |
+| `pico-product.css` | 产品手册、接口说明 |
+| `nord-night.css` | 深色、工程日志 |
+| `songti-report.css` | 中文报告、纪要 |
+| `swiss-plain.css` | 封面感强的短文/海报式文档 |
+
+用户指定风格则用对应文件；未指定时中文报告用 `songti-report.css`，其余默认 `github-doc.css`。只交付 CSS / HTML，不要改回 Office 原件。

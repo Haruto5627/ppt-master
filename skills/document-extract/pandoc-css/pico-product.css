@@ -1,0 +1,184 @@
+/*!
+ * pico-product — 产品文档 / 类 Pico 无类名风
+ * Inspired by: https://github.com/picocss/pico (MIT)
+ *              https://github.com/kognise/water.css (MIT)
+ * Pandoc:
+ *   pandoc input.md -s --embed-resources --css=pico-product.css -o output.html
+ */
+
+:root {
+  --bg: #fff;
+  --fg: #373c44;
+  --muted: #5d6b79;
+  --primary: #0172ad;
+  --primary-hover: #015887;
+  --card: #f0f3f5;
+  --border: #d1d9e0;
+  --ins: #2c7a4b;
+  --measure: 46rem;
+  --radius: 0.375rem;
+  --sans: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Noto Sans SC", "PingFang SC", "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 16.5px; }
+
+body {
+  margin: 0 auto;
+  max-width: var(--measure);
+  padding: 2.25rem 1.4rem 4.5rem;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: var(--sans);
+  line-height: 1.65;
+}
+
+#title-block-header {
+  margin: 0 0 1.8rem;
+  padding: 1.35rem 1.4rem;
+  background: var(--card);
+  border-radius: calc(var(--radius) * 2);
+}
+
+#title-block-header .title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  border: 0;
+}
+
+#title-block-header .subtitle { margin: 0.4rem 0 0; color: var(--primary); }
+#title-block-header .author,
+#title-block-header .date {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+nav#TOC {
+  margin: 0 0 2rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+nav#TOC ul { margin: 0; padding-left: 1.2rem; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1c2128;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 1.7em 0 0.55em;
+}
+
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.22rem; }
+h4 { font-size: 1.05rem; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+a:hover { color: var(--primary-hover); }
+
+ul, ol { margin: 0 0 1em; padding-left: 1.35em; }
+
+blockquote {
+  margin: 0 0 1.1em;
+  padding: 0.85em 1em;
+  background: var(--card);
+  border-left: 0.3em solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+code, kbd, samp {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--card);
+  padding: 0.12em 0.38em;
+  border-radius: 0.25rem;
+}
+
+kbd {
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+pre, div.sourceCode {
+  background: #1c2128;
+  color: #eef2f6;
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+pre {
+  margin: 0 0 1.15em;
+  padding: 1rem 1.1rem;
+  line-height: 1.5;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 0.88em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.15em;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+thead th { background: var(--card); font-weight: 650; }
+tbody tr:hover { background: #f8fafb; }
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+figure { margin: 0 0 1.2em; }
+figcaption { color: var(--muted); font-size: 0.88rem; margin-top: 0.4em; }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem 0;
+}
+
+.footnotes, section.footnotes {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  body { padding: 1.2rem 0.9rem 3rem; }
+  #title-block-header { padding: 1rem; }
+}
+
+@media print {
+  body { max-width: none; }
+  pre { background: #f4f4f4; color: #111; }
+}

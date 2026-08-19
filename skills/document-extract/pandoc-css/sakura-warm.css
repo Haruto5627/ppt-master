@@ -1,0 +1,160 @@
+/*!
+ * sakura-warm — 暖灰衬线，青绿点缀
+ * Inspired by: https://github.com/oxalorg/sakura (MIT)
+ * Pandoc:
+ *   pandoc input.md -s --embed-resources --css=sakura-warm.css -o output.html
+ */
+
+:root {
+  --bg: #f9f9f9;
+  --fg: #4a4a4a;
+  --link: #1d7484;
+  --visited: #144f5a;
+  --hover: #982c61;
+  --wash: #f1f1f1;
+  --measure: 38em;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans SC", "PingFang SC", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 62.5%; }
+
+body {
+  margin: 0 auto;
+  max-width: var(--measure);
+  padding: 2.4rem 1.6rem 5rem;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: var(--sans);
+  font-size: 1.8rem;
+  line-height: 1.618;
+}
+
+#title-block-header { margin: 0 0 2.4rem; }
+
+#title-block-header .title {
+  margin: 0;
+  font-size: 2.35em;
+  font-weight: 700;
+  line-height: 1.1;
+  border: 0;
+}
+
+#title-block-header .author,
+#title-block-header .date,
+#title-block-header .subtitle {
+  margin: 0.4rem 0 0;
+  color: var(--link);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+nav#TOC {
+  margin: 0 0 2.6rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--wash);
+}
+
+nav#TOC ul { margin: 0; padding-left: 1.4em; }
+nav#TOC a { font-weight: 600; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 3rem 0 1.5rem;
+  overflow-wrap: break-word;
+}
+
+h1 { font-size: 2.35em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.75em; }
+h4 { font-size: 1.5em; }
+h5 { font-size: 1.25em; }
+h6 { font-size: 1em; }
+
+p, ul, ol { margin: 0 0 2.5rem; }
+ul, ol { padding-left: 1.4em; }
+li { margin-bottom: 0.4em; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:visited { color: var(--visited); }
+a:hover {
+  color: var(--hover);
+  border-bottom: 2px solid var(--fg);
+}
+
+blockquote {
+  margin: 0 0 2.5rem;
+  padding: 0.8em 1em;
+  background: var(--wash);
+  border-left: 5px solid var(--link);
+}
+
+blockquote p { margin: 0; }
+
+code, kbd, samp {
+  font-size: 0.9em;
+  padding: 0 0.5em;
+  background: var(--wash);
+}
+
+pre, div.sourceCode { background: var(--wash); overflow-x: auto; }
+
+pre {
+  margin: 0 0 2.5rem;
+  padding: 1em;
+  font-size: 0.9em;
+}
+
+pre code { padding: 0; background: transparent; white-space: pre; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 2rem;
+}
+
+th, td {
+  padding: 0.5em;
+  border-bottom: 1px solid var(--wash);
+  text-align: left;
+}
+
+thead th { border-bottom: 2px solid var(--link); }
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 2.5rem;
+}
+
+figure { margin: 0 0 2.5rem; }
+figure img { margin-bottom: 0.6rem; }
+figcaption { color: var(--link); font-size: 1.5rem; }
+
+hr {
+  border: 0;
+  border-top: 2px solid var(--link);
+  margin: 2.8rem 0;
+}
+
+.footnotes, section.footnotes {
+  color: #666;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 684px) {
+  body { font-size: 1.53rem; padding: 1.6rem 1.1rem 3rem; }
+}
+
+@media print {
+  body { background: #fff; max-width: none; }
+}
