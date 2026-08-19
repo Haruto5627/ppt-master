@@ -16,6 +16,6 @@ pandoc 报告.md -s --embed-resources --toc --css=fresh-mint.css -o 报告.html
 | `fresh-lilac.css` | 丁香紫 | Catppuccin Latte lavender |
 | `fresh-latte.css` | 奶茶色 | [catppuccin/catppuccin](https://github.com/catppuccin/catppuccin) Latte |
 
-默认正文栏宽约 `82rem`（约 1400px），并随窗口拉满到 `100vw - 4rem`。旧主题在 `classic/` 里同样加宽了。
+默认正文栏宽 `64rem`，并随窗口收窄到 `100vw - 4rem`。旧主题在 `classic/` 里同样使用这个宽度。
 
 改配色：编辑 [`_emit_fresh.py`](_emit_fresh.py) 后运行 `python3 _emit_fresh.py`。

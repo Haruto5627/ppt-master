@@ -22,7 +22,7 @@ LAYOUT = r"""/*!
   --code: {code};
   --shadow: {shadow};
   --ring: {ring};
-  --measure: 82rem;
+  --measure: 64rem;
   --radius: 1.35rem;
   --sans: "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei",
     ui-sans-serif, system-ui, sans-serif;
