@@ -2,18 +2,19 @@
 name: document-extract
 description: >
   Extract-only conversion of Word (.docx), PowerPoint (.pptx), Excel (.xlsx/.xlsm),
-  and PDF into Markdown. Use when the user asks to read, extract, convert, 提取,
-  读取, or 转换 Office/PDF files for an agent to consume. Default to MarkItDown;
-  use Docling for scanned PDFs, two-column papers, complex tables, or garbled
+  and PDF into Markdown, and dump images from Word/PPT into a sibling images/
+  folder. Use when the user asks to read, extract, convert, 提取, 读取, or 转换
+  Office/PDF files, or to 提取图片 from .docx/.pptx. Default to MarkItDown; use
+  Docling for scanned PDFs, two-column papers, complex tables, or garbled
   MarkItDown output. Do not use for editing documents, and do not replace
   ppt-master source intake (`source_to_md.py`) during PPT generation.
 ---
 
 # 文档提取
 
-只把 Word / PPT / Excel / PDF **提取成 Markdown**，供 agent 阅读。不编辑、不回写原文件。
+只把 Word / PPT / Excel / PDF **提取成 Markdown**，并把 Word / PPT 里的图片存到源文件同级的 `images/` 文件夹。不编辑、不回写原文件。
 
-**触发**：用户要求读取、提取、转 Markdown、或让 agent 消化这些格式的内容。  
+**触发**：用户要求读取、提取、转 Markdown、提取图片、或让 agent 消化这些格式的内容。  
 **范围外**：改 Word/PPT/Excel、美化 PPT、生成新稿。那些任务走别的 skill；PPT 生成走 [`ppt-master/SKILL.md`](../ppt-master/SKILL.md)。
 
 ---
@@ -22,11 +23,13 @@ description: >
 
 | 当前任务 | 用什么 |
 |---|---|
-| 只要提取内容，给 agent 读 | 本 skill：在 MarkItDown / Docling 里选一个 |
+| 只要提取内容，给 agent 读 | 本 skill：在 MarkItDown / Docling 里选一个；Word / PPT 再抽图片 |
+| 只要 Word / PPT 里的图片 | 直接跑 `extract_office_images.py`，不必先转 Markdown |
 | ppt-master 生成 / 填模板 / 美化 / 增强 | **禁止**用本 skill 替代摄入。走 `python skills/ppt-master/scripts/source_to_md.py` |
 | 要改原文件、写回、精细排版 | 停。本 skill 不负责编辑 |
 
-**硬性规则**：同一文件默认只跑一种工具。先 MarkItDown；只有输出不合格时，才对该文件改跑 Docling。
+**硬性规则**：同一文件默认只跑一种文本工具。先 MarkItDown；只有输出不合格时，才对该文件改跑 Docling。  
+**硬性规则**：处理 `.docx` / `.pptx`（含 `.docm` / `.pptm`）时，必须再跑图片提取，输出到**该 Office 文件所在目录**下的 `images/`，不是 Markdown 输出目录，也不是当前工作目录。
 
 ---
 
@@ -118,19 +121,50 @@ print(result.document.export_to_markdown())
 
 ---
 
-## 5. 执行约定
+## 5. Word / PPT 图片提取（必须）
 
-1. **先确认解释器**：`python` / `python -m pip` 必须是装过 `markitdown` 和 `docling` 的那一套。Cursor 工作区解释器不一致时先对齐，再转换。
-2. **输出位置**：用户指定了目录就用指定目录；否则写到源文件旁边，扩展名改为 `.md`。不要覆盖源文件。
-3. **一次一种工具**：对每个文件在日志里写清用了 MarkItDown 还是 Docling。
-4. **只提取**：禁止用这些库（或 Office 自动化）写回 `.docx` / `.pptx` / `.xlsx` / `.pdf`。
-5. **Excel 要按单元格算数**：不要指望 Markdown。说明本 skill 只提取展示用文本；需要单元格级数据时改用 `pandas` / `openpyxl` 读表，而不是改跑 Docling。
+MarkItDown / Docling **不会**把嵌入图存成独立文件。Word / PPT 抽完文本后，立刻跑：
+
+```bash
+python skills/document-extract/extract_office_images.py "报告.docx" "幻灯片.pptx"
+python skills/document-extract/extract_office_images.py "./材料"
+```
+
+目录递归：
+
+```bash
+python skills/document-extract/extract_office_images.py "./材料" -r
+```
+
+行为：
+
+| 项 | 约定 |
+|---|---|
+| 输出目录 | `<Office文件所在目录>/images/` |
+| 多文件同目录 | 共用同一个 `images/`；重名时自动加源文件名前缀 |
+| 无图 | 不创建空文件夹，stderr 打印 `[SKIP]` |
+| 不支持 | 老格式 `.doc` / `.ppt`（先另存为 `.docx` / `.pptx`） |
+| 不做 | 不改 Office 原文件；不从 Excel / PDF 抽图（用户未要求时不要自行扩大） |
+
+stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改用 `python`。
 
 ---
 
-## 6. 禁止
+## 6. 执行约定
+
+1. **先确认解释器**：`python` / `python -m pip` 必须是装过 `markitdown` 和 `docling` 的那一套。图片脚本只需标准库，与是否装过这两个包无关。Cursor 工作区解释器不一致时先对齐，再转换。
+2. **Markdown 输出位置**：用户指定了目录就用指定目录；否则写到源文件旁边，扩展名改为 `.md`。不要覆盖源文件。
+3. **图片输出位置**：固定为 Office 源文件同级的 `images/`。即使 Markdown 写到别处，图片仍跟 Word / PPT 走。
+4. **一次一种文本工具**：对每个文件在日志里写清用了 MarkItDown 还是 Docling；Word / PPT 另写清图片提取结果。
+5. **只提取**：禁止用这些库（或 Office 自动化）写回 `.docx` / `.pptx` / `.xlsx` / `.pdf`。
+6. **Excel 要按单元格算数**：不要指望 Markdown。说明本 skill 只提取展示用文本；需要单元格级数据时改用 `pandas` / `openpyxl` 读表，而不是改跑 Docling。
+
+---
+
+## 7. 禁止
 
 - 为「以防万一」对每个文件同时跑 MarkItDown 和 Docling
 - 用本 skill 替代 ppt-master 的 `source_to_md.py`
 - 把提取结果当成已编辑的正式稿写回原格式
 - 因为 CLI 不在 PATH 就报告「没装好」——先试 `python -m markitdown` / `python -m docling`
+- 把 Word / PPT 图片写到当前工作目录、Markdown 旁的 `_files/`，或任何不是源文件同级 `images/` 的地方
