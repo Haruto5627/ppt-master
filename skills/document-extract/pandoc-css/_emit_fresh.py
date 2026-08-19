@@ -22,7 +22,7 @@ LAYOUT = r"""/*!
   --code: {code};
   --shadow: {shadow};
   --ring: {ring};
-  --measure: 44rem;
+  --measure: 82rem;
   --radius: 1.35rem;
   --sans: "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei",
     ui-sans-serif, system-ui, sans-serif;
@@ -42,9 +42,9 @@ html {{
 }}
 
 body {{
-  margin: 2.4rem auto 4rem;
-  max-width: var(--measure);
-  padding: 0 2.15rem 2.8rem;
+  margin: 1.6rem auto 3.2rem;
+  max-width: min(var(--measure), calc(100vw - 4rem));
+  padding: 0 2.6rem 2.8rem;
   color: var(--fg);
   background: var(--card);
   border-radius: var(--radius);
@@ -58,7 +58,7 @@ body::before {{
   content: "";
   display: block;
   height: 10px;
-  margin: 0 -2.15rem 1.8rem;
+  margin: 0 -2.6rem 1.8rem;
   border-radius: var(--radius) var(--radius) 0 0;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }}
@@ -128,9 +128,9 @@ h1 {{ font-size: 1.55rem; }}
 h2 {{
   font-size: 1.28rem;
   padding-bottom: 0.28rem;
-  background: linear-gradient(90deg, var(--accent-2), transparent 8.5rem);
+  background: linear-gradient(90deg, var(--accent-2), transparent 14rem);
   background-repeat: no-repeat;
-  background-size: 8.5rem 3px;
+  background-size: 14rem 3px;
   background-position: 0 100%;
 }}
 h3 {{ font-size: 1.08rem; color: var(--accent); }}

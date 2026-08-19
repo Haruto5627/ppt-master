@@ -14,7 +14,7 @@
   --cinnabar: #b23a2f;
   --rule: #d9d0c3;
   --wash: #efe8dc;
-  --measure: 40em;
+  --measure: 68em;
   --serif: "Source Han Serif SC", "Noto Serif SC", "Noto Serif CJK SC",
     "Songti SC", "SimSun", "STSong", "Times New Roman", serif;
   --sans: "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC",
@@ -30,7 +30,7 @@ html { font-size: 18px; }
 
 body {
   margin: 1.5rem auto 3rem;
-  max-width: var(--measure);
+  max-width: min(var(--measure), calc(100vw - 4rem));
   padding: 2.4rem 2.2rem 3.6rem;
   color: var(--fg);
   background: var(--paper);

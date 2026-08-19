@@ -13,7 +13,7 @@
   --accent: #e30613;
   --bar: #111111;
   --wash: #f4f4f4;
-  --measure: 40rem;
+  --measure: 72rem;
   --sans: Helvetica, "Helvetica Neue", Arial, "Noto Sans SC", "Noto Sans CJK SC",
     "PingFang SC", "Microsoft YaHei", sans-serif;
   --mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
@@ -27,7 +27,7 @@ html { font-size: 16px; }
 
 body {
   margin: 0 auto;
-  max-width: var(--measure);
+  max-width: min(var(--measure), calc(100vw - 4rem));
   padding: 3rem 1.25rem 5rem;
   color: var(--fg);
   background: var(--bg);
