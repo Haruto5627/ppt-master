@@ -22,7 +22,7 @@ description: >
 
 ## 1. 提取原料（不给读者看）
 
-需要 **Pandoc** 和 **Python**（标准库即可；Windows 若 `python3` 不可用，改用 `python`）。不要用 MarkItDown 抽公式。老格式 `.doc` 先另存为 `.docx`。
+需要 **Pandoc** 和 **Python**（标准库即可）。**Hard rule**：命令一律写 `python`，禁止写 `python3`（本机 `python3` 会失败）。不要用 MarkItDown 抽公式。老格式 `.doc` 先另存为 `.docx`。
 
 脚本和 Word 放在同一台机器即可，不必在 ppt-master 仓库里。在 Word 所在目录：
 

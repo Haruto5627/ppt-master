@@ -11,13 +11,13 @@ captions (题注 paragraph, then drawing descr/name). Does not modify the
 Office file.
 
 Usage:
-    python3 skills/document-extract/extract_office_images.py <file_or_dir> [...]
-    python3 skills/document-extract/extract_office_images.py report.docx
-    python3 skills/document-extract/extract_office_images.py ./docs --dir-name images
+    python skills/document-extract/extract_office_images.py <file_or_dir> [...]
+    python skills/document-extract/extract_office_images.py report.docx
+    python skills/document-extract/extract_office_images.py ./docs --dir-name images
 
 Examples:
-    python3 skills/document-extract/extract_office_images.py 报告.docx
-    python3 skills/document-extract/extract_office_images.py ./materials -r
+    python skills/document-extract/extract_office_images.py 报告.docx
+    python skills/document-extract/extract_office_images.py ./materials -r
 
 Dependencies:
     None (standard library only)
@@ -537,7 +537,7 @@ def build_parser() -> argparse.ArgumentParser:
             "back into the Office file.\n"
             "One Word file: <dir>/images/. Two or more Word files in the same "
             "folder: <dir>/images/<stem>/.\n"
-            "Windows: if python3 is unavailable, rerun with python."
+            "Invoke with python, not python3."
         ),
     )
     parser.add_argument(

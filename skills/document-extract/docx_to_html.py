@@ -7,12 +7,12 @@ Keeps table colspan/rowspan from Word gridSpan/vMerge. Does not modify
 the Word file and does not need mammoth, markitdown, or Microsoft Office.
 
 Usage:
-    python3 skills/document-extract/docx_to_html.py report.docx
-    python3 skills/document-extract/docx_to_html.py report.docx --check
+    python skills/document-extract/docx_to_html.py report.docx
+    python skills/document-extract/docx_to_html.py report.docx --check
 
 Examples:
-    python3 skills/document-extract/docx_to_html.py 报告.docx
-    python3 skills/document-extract/docx_to_html.py 报告.docx -o 报告.body.html
+    python skills/document-extract/docx_to_html.py 报告.docx
+    python skills/document-extract/docx_to_html.py 报告.docx -o 报告.body.html
 
 Dependencies:
     None (standard library only)
@@ -292,7 +292,7 @@ def build_parser() -> argparse.ArgumentParser:
             "Convert Word to HTML (stdlib). Keeps merged cells without mammoth."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="Windows: if python3 is unavailable, rerun with python.",
+        epilog="Invoke with python, not python3.",
     )
     parser.add_argument("input", help="Path to a .docx / .docm file")
     parser.add_argument(

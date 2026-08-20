@@ -49,7 +49,7 @@ description: >
 - 论文双栏、跨页大表、财报/合同里表格结构必须对
 - 上一次 MarkItDown 结果已经乱了（见第 4 节）
 
-命令（Windows 若 `python3` 不可用，改用 `python`）：
+命令（一律 `python`，不要用 `python3`）：
 
 ```bash
 python -m markitdown "材料.pdf" -o "材料.md"
@@ -148,7 +148,7 @@ python skills/document-extract/extract_office_images.py "./材料" -r
 | 不支持 | 老格式 `.doc` / `.ppt`（先另存为 `.docx` / `.pptx`） |
 | 不做 | 不改 Office 原文件；不从 Excel / PDF 抽图（用户未要求时不要自行扩大） |
 
-stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改用 `python`。
+stdout 每行一个写出的图片路径。调用一律用 `python`，不要用 `python3`。
 
 ---
 
