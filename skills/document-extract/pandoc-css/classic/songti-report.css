@@ -1,0 +1,222 @@
+/*!
+ * songti-report — 中文报告 / 公文阅读风
+ * Inspired by: 中文排版需求（CLReq）与衬线正文习惯；
+ *              结构参考 classless 文档 CSS（simple.css / new.css）
+ * Pandoc:
+ *   pandoc input.md -s --embed-resources --css=songti-report.css -o output.html
+ */
+
+:root {
+  --bg: #f7f4ee;
+  --paper: #fffcf6;
+  --fg: #2a241c;
+  --muted: #6b6258;
+  --cinnabar: #b23a2f;
+  --rule: #d9d0c3;
+  --wash: #efe8dc;
+  --measure: 64rem;
+  --serif: "Source Han Serif SC", "Noto Serif SC", "Noto Serif CJK SC",
+    "Songti SC", "SimSun", "STSong", "Times New Roman", serif;
+  --sans: "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC",
+    "PingFang SC", "Microsoft YaHei", "Heiti SC", sans-serif;
+  --mono: "Sarasa Mono SC", "Noto Sans Mono CJK SC", "JetBrains Mono", Consolas, monospace;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 18px; }
+
+body {
+  margin: 1.5rem auto 3rem;
+  max-width: min(var(--measure), calc(100vw - 4rem));
+  padding: 2.4rem 2.2rem 3.6rem;
+  color: var(--fg);
+  background: var(--paper);
+  box-shadow: 0 0 0 1px var(--rule), 0 12px 40px rgba(42, 36, 28, 0.08);
+  font-family: var(--serif);
+  line-height: 1.85;
+  text-align: justify;
+  hanging-punctuation: allow-end;
+}
+
+html {
+  background: var(--bg);
+}
+
+#title-block-header {
+  margin: 0 0 2rem;
+  padding-bottom: 1.1rem;
+  text-align: center;
+  border-bottom: 2px solid var(--cinnabar);
+}
+
+#title-block-header .title {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  border: 0;
+}
+
+#title-block-header .subtitle {
+  margin: 0.55rem 0 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--cinnabar);
+  letter-spacing: 0.12em;
+}
+
+#title-block-header .author,
+#title-block-header .date {
+  margin: 0.3rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+nav#TOC {
+  margin: 0 0 2.2rem;
+  padding: 1rem 1.2rem 1.1rem;
+  background: var(--wash);
+  border-left: 4px solid var(--cinnabar);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  text-align: start;
+  line-height: 1.65;
+}
+
+nav#TOC::before {
+  content: "目录";
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--cinnabar);
+}
+
+nav#TOC ul { margin: 0; padding-left: 1.2em; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: start;
+  margin: 1.8em 0 0.7em;
+}
+
+h1 { font-size: 1.55rem; letter-spacing: 0.06em; }
+h2 {
+  font-size: 1.28rem;
+  padding-left: 0.55em;
+  border-left: 4px solid var(--cinnabar);
+}
+h3 { font-size: 1.08rem; color: #4a3f33; }
+h4 { font-size: 1rem; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--cinnabar);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--cinnabar);
+}
+
+a:hover { border-bottom-style: solid; }
+
+ul, ol {
+  margin: 0 0 1em;
+  padding-left: 1.6em;
+  text-align: start;
+}
+
+blockquote {
+  margin: 0 0 1.1em;
+  padding: 0.6em 1em;
+  background: var(--wash);
+  border-left: 3px solid var(--cinnabar);
+  color: #4a4238;
+}
+
+code, kbd, samp {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--wash);
+  padding: 0.1em 0.35em;
+}
+
+pre, div.sourceCode {
+  background: #2a241c;
+  color: #f7f4ee;
+  overflow-x: auto;
+  text-align: start;
+}
+
+pre {
+  margin: 0 0 1.15em;
+  padding: 0.95rem 1rem;
+  line-height: 1.55;
+  font-size: 0.86rem;
+}
+
+pre code { background: transparent; color: inherit; padding: 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.15em;
+  font-size: 0.92rem;
+  font-family: var(--sans);
+  text-align: start;
+  background: #fff;
+}
+
+th, td {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--rule);
+}
+
+thead th {
+  background: var(--wash);
+  font-weight: 700;
+}
+
+img, svg, video { max-width: 100%; height: auto; }
+figure { margin: 0 0 1.2em; text-align: center; }
+figcaption {
+  margin-top: 0.4em;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  margin: 2rem 0;
+}
+
+.footnotes, section.footnotes {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: start;
+}
+
+@media (max-width: 720px) {
+  body {
+    margin: 0;
+    box-shadow: none;
+    padding: 1.4rem 1rem 2.6rem;
+    text-align: start;
+  }
+}
+
+@media print {
+  html, body { background: #fff; }
+  body { box-shadow: none; margin: 0; max-width: none; }
+}

@@ -1,0 +1,193 @@
+/*!
+ * tufte-essay — 学术随笔 / 讲义风
+ * Inspired by: https://github.com/edwardtufte/tufte-css
+ *              https://github.com/jez/tufte-pandoc-css
+ * Pandoc:
+ *   pandoc input.md -s --embed-resources --css=tufte-essay.css -o output.html
+ */
+
+:root {
+  --bg: #fffff8;
+  --fg: #111111;
+  --muted: #5c5c5c;
+  --link: #1a1a1a;
+  --accent: #a00000;
+  --rule: #ccc;
+  --code-bg: #f3f2ea;
+  --measure: 64rem;
+  --serif: "et-book", Palatino, "Palatino Linotype", "Palatino LT STD",
+    "Source Han Serif SC", "Noto Serif SC", "Noto Serif CJK SC", "Songti SC",
+    "Times New Roman", serif;
+  --sans: "Gill Sans", "Gill Sans MT", "Noto Sans SC", "Noto Sans CJK SC",
+    Calibri, sans-serif;
+  --mono: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 15px; }
+
+body {
+  margin: 0 auto;
+  max-width: min(var(--measure), calc(100vw - 4rem));
+  padding: 4rem 1.5rem 6rem;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  font-feature-settings: "kern" 1, "liga" 1, "onum" 0;
+}
+
+#title-block-header { margin: 0 0 2.75rem; }
+
+#title-block-header .title {
+  margin: 0;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  border: 0;
+}
+
+#title-block-header .subtitle {
+  margin: 0.6rem 0 0;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+#title-block-header .author,
+#title-block-header .date {
+  margin: 0.35rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+nav#TOC {
+  margin: 0 0 2.5rem;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+}
+
+nav#TOC::before {
+  content: "Contents";
+  display: block;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+nav#TOC ul { margin: 0; padding-left: 1.1rem; }
+nav#TOC a { border-bottom: 1px solid var(--rule); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  margin: 2.2rem 0 0.8rem;
+}
+
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.65rem; }
+h3 { font-size: 1.35rem; }
+h4, h5, h6 { font-size: 1.15rem; }
+
+p { margin: 0 0 1.15em; text-align: justify; hyphens: auto; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  text-underline-offset: 0.15em;
+}
+
+a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+ul, ol { margin: 0 0 1.15em; padding-left: 1.4em; }
+
+blockquote {
+  margin: 1.2em 0;
+  padding: 0 0 0 1.1em;
+  font-style: italic;
+  color: #333;
+  border-left: 1px solid var(--fg);
+}
+
+code, kbd, samp {
+  font-family: var(--mono);
+  font-size: 0.82em;
+  background: var(--code-bg);
+  padding: 0.08em 0.28em;
+}
+
+pre, div.sourceCode {
+  background: var(--code-bg);
+  overflow-x: auto;
+}
+
+pre {
+  margin: 0 0 1.2em;
+  padding: 1em 1.1em;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+pre code { background: transparent; padding: 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.3em;
+  font-size: 0.95rem;
+  font-family: var(--sans);
+}
+
+th, td {
+  padding: 0.45em 0.55em;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+
+thead th {
+  border-bottom: 1.5px solid var(--fg);
+  font-weight: 600;
+}
+
+img, svg, video { max-width: 100%; height: auto; }
+figure { margin: 1.4em 0; }
+figcaption {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.4em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.2em 0;
+}
+
+.footnotes, section.footnotes {
+  margin-top: 3rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  body { padding: 2rem 1rem 3.5rem; font-size: 1.1rem; }
+  p { text-align: start; }
+}
+
+@media print {
+  body { background: #fff; max-width: none; }
+  a { border-bottom: 0; text-decoration: underline; }
+}
