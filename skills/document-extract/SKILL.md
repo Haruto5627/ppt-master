@@ -1,23 +1,96 @@
 ---
 name: document-extract
 description: >
-  Extract-only conversion of Word (.docx), PowerPoint (.pptx), Excel (.xlsx/.xlsm),
-  and PDF into Markdown, dump images from Word/PPT into a sibling images/
-  folder, and style Pandoc Markdown-to-HTML with the CSS files in pandoc-css/.
-  Use when the user asks to read, extract, convert, 提取, 读取, or 转换
-  Office/PDF files, to 提取图片 from .docx/.pptx, or to turn Markdown into HTML
-  with Pandoc CSS. Default to MarkItDown; use Docling for scanned PDFs,
-  two-column papers, complex tables, or garbled MarkItDown output. Do not use
-  for editing documents, and do not replace ppt-master source intake
-  (`source_to_md.py`) during PPT generation.
+  Extract Word/PPT/Excel/PDF, rewrite long Word design docs into beginner
+  Markdown, and publish HTML with Pandoc CSS. Use when the user asks to 提取,
+  读取, 转换, 精简设计文档, or turn Markdown into HTML. Word→新手教材 HTML
+  uses Pandoc docx→md for LaTeX formulas, stdlib image extract, HTML <table>
+  for merged cells in the rewritten md, then pandoc --mathjax --css.
+  Do not convert Word straight to HTML as the deliverable. Do not replace
+  ppt-master source intake (`source_to_md.py`) during PPT generation.
 ---
 
 # 文档提取
 
-只把 Word / PPT / Excel / PDF **提取成 Markdown**，并把 Word / PPT 里的图片存到源文件同级的 `images/` 文件夹。不编辑、不回写原文件。
+从 Office / PDF **提取**原料；若用户要把过长的 Word 设计文档改成新手可读材料，则 **提取 → 重写 Markdown → Pandoc HTML**。不回写原文件。
 
-**触发**：用户要求读取、提取、转 Markdown、提取图片、或让 agent 消化这些格式的内容。  
-**范围外**：改 Word/PPT/Excel、美化 PPT、生成新稿。那些任务走别的 skill；PPT 生成走 [`ppt-master/SKILL.md`](../ppt-master/SKILL.md)。
+**触发**：提取、转 Markdown、提取图片、精简设计文档、或导出 HTML。  
+**范围外**：改回 Word/PPT/Excel、美化 PPT。PPT 生成走 [`ppt-master/SKILL.md`](../ppt-master/SKILL.md)。
+
+---
+
+## 0. Word 设计文档 → 新手 HTML（完整路径）
+
+**适用**：原稿是长 Word 设计文档；Markdown 只给作者/agent 看；**成品是 HTML**；公式必须是 LaTeX；合并单元格要保留到 HTML。
+
+**禁止**：Word 直出 HTML 当成品；用 MarkItDown 当公式主通道；把合并格拆掉只为了 MD 预览好看。
+
+假设文件为 `设计文档.docx`，和脚本、CSS 放在同一台机器（不必在 ppt-master 仓库里）。Windows 若 `python3` 不可用，改用 `python`。
+
+### 0.1 提取原料（不给读者看）
+
+在 Word 所在目录：
+
+```bash
+pandoc "设计文档.docx" -t markdown -o "_extracted.md"
+python extract_office_images.py "设计文档.docx"
+python docx_to_html.py "设计文档.docx" --check
+```
+
+`--check` 若打印 `html`，再跑：
+
+```bash
+python docx_to_html.py "设计文档.docx"
+```
+
+得到：
+
+| 文件 | 用途 |
+|---|---|
+| `_extracted.md` | 叙事 + **LaTeX 公式**（Pandoc 从 OMML 转出）。表可以丑 |
+| `images/` | 插图，与 Word 同级 |
+| `设计文档.body.html` | 仅当有合并格：给重写看清 `colspan`/`rowspan`，不是成品 |
+
+### 0.2 重写成教学稿 `教材.md`
+
+面向新手：**缩短、拆步骤、改说法**。写在 `教材.md`，不要覆盖 Word。
+
+| 元素 | 重写规则 |
+|---|---|
+| 正文 | 精简，保留必要术语 |
+| 公式 | 必须仍是 `$...$` / `$$...$$`，禁止改成纯文字或截图（除非用户明确不要公式） |
+| 无合并的表 | Markdown 管道表 |
+| **有合并的表** | **只写 HTML `<table>`**（`colspan`/`rowspan`），禁止写成 `\| a \| b \|` |
+| 图 | `![](images/文件名)`，路径相对 `教材.md` |
+
+合并表示例（放进 `教材.md` 正文）：
+
+```html
+<table>
+  <tr>
+    <th rowspan="2">模块</th>
+    <th colspan="2">步骤</th>
+  </tr>
+  <tr><th>序号</th><th>说明</th></tr>
+  <tr>
+    <td rowspan="2">登录</td>
+    <td>1</td><td>输入账号</td>
+  </tr>
+  <tr><td>2</td><td>校验密码</td></tr>
+</table>
+```
+
+作者自己看 `教材.md` 时，管道表预览合并格会坏是正常的；**以导出的 HTML 核对表。**
+
+### 0.3 导出成品 HTML
+
+```bash
+pandoc "教材.md" -s --embed-resources --toc --mathjax --css=fresh-mint.css -o "教材.html"
+```
+
+CSS 默认 `fresh-mint.css`（栏宽 64rem）。用户指定了 `fresh-sky` / `fresh-peach` / `fresh-lilac` / `fresh-latte` 则换文件。图片已被 `--embed-resources` 打进 HTML。
+
+**成品是 `教材.html`，不是 `_extracted.md`，也不是 `设计文档.body.html`。**
 
 ---
 
@@ -25,11 +98,11 @@ description: >
 
 | 当前任务 | 用什么 |
 |---|---|
-| 只要提取内容，给 agent 读 | 本 skill：在 MarkItDown / Docling 里选一个；Word / PPT 再抽图片 |
-| 只要 Word / PPT 里的图片 | 直接跑 `extract_office_images.py`，不必先转 Markdown |
-| Word 表格有合并格 / Markdown 表已经对不齐 | 不要修补管道表。走第 9 节：标准库 `docx_to_html.py`，再用 Pandoc + CSS |
+| 长 Word 设计文档 → 精简成新手可读 HTML | **只走第 0 节完整路径** |
+| 只要提取内容，给 agent 读（不发布 HTML） | MarkItDown 或 Docling；Word / PPT 再抽图片 |
+| 只要 Word / PPT 里的图片 | 直接跑 `extract_office_images.py` |
 | ppt-master 生成 / 填模板 / 美化 / 增强 | **禁止**用本 skill 替代摄入。走 `python skills/ppt-master/scripts/source_to_md.py` |
-| 要改原文件、写回、精细排版 | 停。本 skill 不负责编辑 |
+| 要改原文件、写回 | 停。本 skill 不负责编辑 |
 
 **硬性规则**：同一文件默认只跑一种文本工具。先 MarkItDown；只有输出不合格时，才对该文件改跑 Docling。  
 **硬性规则**：处理 `.docx` / `.pptx`（含 `.docm` / `.pptm`）时，必须再跑图片提取，输出到**该 Office 文件所在目录**下的 `images/`，不是 Markdown 输出目录，也不是当前工作目录。
@@ -179,7 +252,7 @@ stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改
 用户要把 `.md` 做成可分发 HTML 时，用 [`pandoc-css/`](pandoc-css/) 里的**独立 CSS 源文件**，不要再去网上拼一套。
 
 ```bash
-pandoc 报告.md -s --embed-resources --toc --css=skills/document-extract/pandoc-css/fresh-mint.css -o 报告.html
+pandoc "教材.md" -s --embed-resources --toc --mathjax --css=skills/document-extract/pandoc-css/fresh-mint.css -o "教材.html"
 ```
 
 | CSS | 适用 |
@@ -190,30 +263,12 @@ pandoc 报告.md -s --embed-resources --toc --css=skills/document-extract/pandoc
 | `fresh-lilac.css` | 丁香紫 |
 | `fresh-latte.css` | Catppuccin Latte 奶茶 |
 
-用户指定颜色则用对应文件；未指定时用 `fresh-mint.css`。旧主题在 [`pandoc-css/classic/`](pandoc-css/classic/)，仅在用户明确要「GitHub / 公文 / 深色」时再用。只交付 CSS / HTML，不要改回 Office 原件。
+用户指定颜色则用对应文件；未指定时用 `fresh-mint.css`。含公式的教学稿必须加 `--mathjax`。旧主题在 [`pandoc-css/classic/`](pandoc-css/classic/)，仅在用户明确要「GitHub / 公文 / 深色」时再用。只交付 CSS / HTML，不要改回 Office 原件。
 
 ---
 
-## 9. Word 表格保不住合并格时
+## 9. 合并单元格（教学稿写法）
 
-Markdown 管道表**没有**合并单元格。不要试图在 `| a | b |` 里还原 Word 的 `colspan` / `rowspan`。
+管道表没有 `colspan`。有合并的表在 `教材.md` 里写成 HTML `<table>`（见第 0.2 节），Pandoc 会带进成品 HTML。
 
-**分流**：
-
-| 表长什么样 | 怎么处理 |
-|---|---|
-| 普通行列、无合并、MD 里对得上 | 继续用 MarkItDown 的管道表 |
-| 有合并格、表头跨列、单元格里再套表、MD 表错位 | **改走 HTML**，不要改管道表 |
-| 斜线表头、文本框拼出来的「假表」、保真优先于可编辑 | 用已抽出的 `images/` 配图，MD 里 `![](images/...)` |
-
-检查 + 转换：
-
-```bash
-python skills/document-extract/docx_to_html.py "报告.docx" --check
-python skills/document-extract/docx_to_html.py "报告.docx"
-pandoc "报告.body.html" -s --embed-resources --css=skills/document-extract/pandoc-css/fresh-mint.css -o "报告.html"
-```
-
-`--check` 在 stderr 说明 `html` 还是 `markdown`；需要 HTML 时写出 Word 同级的 `<stem>.body.html`。脚本只读 OOXML，**不依赖 mammoth / markitdown / Office**，公司电脑上有 Python 就能跑。
-
-**禁止**：为了对齐表格去改 `.docx`；把拆坏的管道表手填成「看起来像合并」。agent 读内容仍可用 MarkItDown；**给用户看的 HTML** 以 `docx_to_html.py` 结果为准。
+提取时可用 `docx_to_html.py` 看清原表合并结构。**不要**把 `设计文档.body.html` 直接当成品；**不要**为了 MD 预览把合并格填开（除非教学上确实该拆成两张表）。
