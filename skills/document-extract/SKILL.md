@@ -27,7 +27,7 @@ description: >
 |---|---|
 | 只要提取内容，给 agent 读 | 本 skill：在 MarkItDown / Docling 里选一个；Word / PPT 再抽图片 |
 | 只要 Word / PPT 里的图片 | 直接跑 `extract_office_images.py`，不必先转 Markdown |
-| Word 表格有合并格 / Markdown 表已经对不齐 | 不要修补管道表。走第 9 节：mammoth HTML，再用 Pandoc + CSS |
+| Word 表格有合并格 / Markdown 表已经对不齐 | 不要修补管道表。走第 9 节：标准库 `docx_to_html.py`，再用 Pandoc + CSS |
 | ppt-master 生成 / 填模板 / 美化 / 增强 | **禁止**用本 skill 替代摄入。走 `python skills/ppt-master/scripts/source_to_md.py` |
 | 要改原文件、写回、精细排版 | 停。本 skill 不负责编辑 |
 
@@ -214,6 +214,6 @@ python skills/document-extract/docx_to_html.py "报告.docx"
 pandoc "报告.body.html" -s --embed-resources --css=skills/document-extract/pandoc-css/fresh-mint.css -o "报告.html"
 ```
 
-`--check` 在 stderr 说明 `html` 还是 `markdown`；需要 HTML 时写出 Word 同级的 `<stem>.body.html`（mammoth 片段，含合并格）。这依赖 `markitdown[docx]` 自带的 `mammoth`。
+`--check` 在 stderr 说明 `html` 还是 `markdown`；需要 HTML 时写出 Word 同级的 `<stem>.body.html`。脚本只读 OOXML，**不依赖 mammoth / markitdown / Office**，公司电脑上有 Python 就能跑。
 
-**禁止**：为了对齐表格去改 `.docx`；把拆坏的管道表手填成「看起来像合并」。agent 读内容仍可用 MarkItDown；**给用户看的 HTML** 以 mammoth 结果为准。
+**禁止**：为了对齐表格去改 `.docx`；把拆坏的管道表手填成「看起来像合并」。agent 读内容仍可用 MarkItDown；**给用户看的 HTML** 以 `docx_to_html.py` 结果为准。
