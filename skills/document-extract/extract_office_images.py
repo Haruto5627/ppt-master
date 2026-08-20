@@ -4,8 +4,10 @@ Document Extract - Office Image Extractor
 
 Extract embedded images from Word (.docx/.docm) and PowerPoint
 (.pptx/.pptm) packages into an ``images/`` folder next to each source file.
-For Word, also write ``<stem>.captions.json`` mapping document-order figures
-to captions (题注 paragraph, then drawing descr/name). Does not modify the
+A lone Word file writes images directly into ``images/``. When that folder
+has two or more Word files, each Word gets ``images/<stem>/``.
+For Word, also write a captions JSON mapping document-order figures to
+captions (题注 paragraph, then drawing descr/name). Does not modify the
 Office file.
 
 Usage:
@@ -60,6 +62,7 @@ CAPTION_TEXT_RE = re.compile(
     r"[\d一二三四五六七八九十百]+",
     re.IGNORECASE,
 )
+UNSAFE_DIR_RE = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
 
 
 @dataclass
@@ -140,6 +143,56 @@ def _original_filename(zip_name: str) -> str:
 
 def _normalize_zip_name(name: str) -> str:
     return name.replace("\\", "/").lstrip("/")
+
+
+def _safe_dir_name(stem: str) -> str:
+    name = UNSAFE_DIR_RE.sub("_", stem).strip(" .")
+    return name or "word"
+
+
+def _word_files_in_dir(directory: Path) -> list[Path]:
+    files: list[Path] = []
+    for child in directory.iterdir():
+        if child.is_file() and child.suffix.lower() in WORD_SUFFIXES:
+            files.append(child.resolve())
+    return sorted(files, key=lambda path: path.name.lower())
+
+
+def assign_word_subdirs(word_files: list[Path]) -> dict[Path, str]:
+    """Stable per-stem folder names when a directory has multiple Word files."""
+    mapping: dict[Path, str] = {}
+    used: set[str] = set()
+    for source in word_files:
+        base = _safe_dir_name(source.stem)
+        name = base
+        if name.lower() in used:
+            name = _safe_dir_name(f"{source.stem}_{source.suffix.lstrip('.')}")
+        n = 2
+        candidate = name
+        while candidate.lower() in used:
+            candidate = f"{name}_{n}"
+            n += 1
+        used.add(candidate.lower())
+        mapping[source.resolve()] = candidate
+    return mapping
+
+
+def image_dest_dir(source: Path, images_root: Path, word_subdirs: dict[Path, str]) -> Path:
+    """Use images/<stem>/ when the Word's directory contains more than one Word file."""
+    if source.suffix.lower() not in WORD_SUFFIXES:
+        return images_root
+    if len(word_subdirs) <= 1:
+        return images_root
+    name = word_subdirs.get(source.resolve())
+    if not name:
+        name = _safe_dir_name(source.stem)
+    return images_root / name
+
+
+def captions_json_path(source: Path, dest_dir: Path, images_root: Path) -> Path:
+    if dest_dir.resolve() == images_root.resolve():
+        return dest_dir / f"{source.stem}.captions.json"
+    return dest_dir / "captions.json"
 
 
 def _unique_filename(
@@ -368,7 +421,7 @@ def _fallback_caption(drawing: DrawingRef) -> tuple[str, str]:
 
 def collect_word_figure_captions(
     source: Path,
-    zip_to_file: dict[str, str],
+    extracted_by_zip: dict[str, ExtractedImage],
 ) -> list[dict[str, object]]:
     """Return document-order figure records for a Word package."""
     with zipfile.ZipFile(source) as zf:
@@ -382,6 +435,23 @@ def collect_word_figure_captions(
     figures: list[dict[str, object]] = []
     used_zip: set[str] = set()
     pending_caption: str | None = None
+    path_root = source.parent.resolve()
+
+    def figure_record(
+        zip_name: str,
+        item: ExtractedImage,
+        caption: str,
+        caption_source: str,
+    ) -> dict[str, object]:
+        rel = item.dest.resolve().relative_to(path_root).as_posix()
+        return {
+            "order": len(figures) + 1,
+            "file": item.dest.name,
+            "path": rel,
+            "media": zip_name,
+            "caption": caption,
+            "caption_source": caption_source,
+        }
 
     for node in root.iter():
         if local_tag(node) != "p":
@@ -396,8 +466,8 @@ def collect_word_figure_captions(
             for drawing in drawings:
                 nonlocal_pending = pending_caption if first else None
                 zip_name = rels.get(drawing.rid, "")
-                filename = zip_to_file.get(zip_name, "")
-                if not filename:
+                item = extracted_by_zip.get(zip_name)
+                if item is None:
                     continue
                 caption = ""
                 caption_source = "empty"
@@ -412,15 +482,7 @@ def collect_word_figure_captions(
                     caption = fallback
                     caption_source = fallback_source
                 used_zip.add(zip_name)
-                figures.append(
-                    {
-                        "order": len(figures) + 1,
-                        "file": filename,
-                        "media": zip_name,
-                        "caption": caption,
-                        "caption_source": caption_source,
-                    }
-                )
+                figures.append(figure_record(zip_name, item, caption, caption_source))
                 first = False
             pending_caption = None
             continue
@@ -431,36 +493,30 @@ def collect_word_figure_captions(
             else:
                 pending_caption = text
 
-    for zip_name, filename in zip_to_file.items():
+    for zip_name, item in extracted_by_zip.items():
         if zip_name in used_zip:
             continue
-        figures.append(
-            {
-                "order": len(figures) + 1,
-                "file": filename,
-                "media": zip_name,
-                "caption": "",
-                "caption_source": "unreferenced",
-            }
-        )
+        figures.append(figure_record(zip_name, item, "", "unreferenced"))
     return figures
 
 
 def write_word_captions_json(
     source: Path,
     dest_dir: Path,
+    images_root: Path,
     extracted: list[ExtractedImage],
 ) -> Path | None:
-    """Write ``<stem>.captions.json`` next to extracted Word images."""
+    """Write captions JSON next to extracted Word images."""
     if source.suffix.lower() not in WORD_SUFFIXES or not extracted:
         return None
-    zip_to_file = {item.zip_name: item.dest.name for item in extracted}
-    figures = collect_word_figure_captions(source, zip_to_file)
+    extracted_by_zip = {item.zip_name: item for item in extracted}
+    figures = collect_word_figure_captions(source, extracted_by_zip)
     payload = {
         "source": source.name,
+        "directory": dest_dir.resolve().relative_to(source.parent.resolve()).as_posix(),
         "figures": figures,
     }
-    dest = dest_dir / f"{source.stem}.captions.json"
+    dest = captions_json_path(source, dest_dir, images_root)
     dest.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -472,12 +528,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
             "Extract images from Word/PowerPoint files into a sibling images/ folder. "
-            "Word also writes <stem>.captions.json for figure captions."
+            "Multiple Word files in one directory each get images/<stem>/. "
+            "Word also writes a captions JSON for figure captions."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
-            "Images are written to <source-dir>/<dir-name>/ and never written "
+            "Images are written next to each source file and never written "
             "back into the Office file.\n"
+            "One Word file: <dir>/images/. Two or more Word files in the same "
+            "folder: <dir>/images/<stem>/.\n"
             "Windows: if python3 is unavailable, rerun with python."
         ),
     )
@@ -524,8 +583,17 @@ def main(argv: list[str] | None = None) -> int:
 
     failed = 0
     used_by_dir: dict[Path, set[str]] = {}
+    word_subdirs_by_parent: dict[Path, dict[Path, str]] = {}
     for source in sources:
-        dest_dir = source.parent / dir_name
+        images_root = source.parent / dir_name
+        parent_key = source.parent.resolve()
+        if parent_key not in word_subdirs_by_parent:
+            word_subdirs_by_parent[parent_key] = assign_word_subdirs(
+                _word_files_in_dir(source.parent)
+            )
+        dest_dir = image_dest_dir(
+            source, images_root, word_subdirs_by_parent[parent_key]
+        )
         used = used_by_dir.setdefault(dest_dir.resolve(), set())
         if dest_dir.exists():
             for existing in dest_dir.iterdir():
@@ -542,7 +610,9 @@ def main(argv: list[str] | None = None) -> int:
             continue
         captions_path = None
         try:
-            captions_path = write_word_captions_json(source, dest_dir, written)
+            captions_path = write_word_captions_json(
+                source, dest_dir, images_root, written
+            )
         except (OSError, ValueError, ET.ParseError, zipfile.BadZipFile) as exc:
             _status(f"[WARN] {source.name}: images extracted, captions skipped ({exc})")
         extra = f"; captions -> {captions_path.name}" if captions_path else ""

@@ -48,8 +48,9 @@ python docx_to_html.py "设计文档.docx"
 | 文件 | 用途 |
 |---|---|
 | `_extracted.md` | 叙事 + **LaTeX 公式**（Pandoc 从 OMML 转出）。表可以丑 |
-| `images/` | 插图，与 Word 同级 |
-| `images/设计文档.captions.json` | 文档顺序、文件名、Word 题注（有则填、无则空） |
+| `images/` | 该目录只有一个 Word：插图直接放这里 |
+| `images/<Word主文件名>/` | 该目录有多个 Word：每个文件一个子目录 |
+| 题注 JSON | 单文件：`images/<stem>.captions.json`；多文件：`images/<stem>/captions.json` |
 | `设计文档.body.html` | 仅当有合并格：给重写看清 `colspan`/`rowspan`，不是成品 |
 
 ### 0.2 按正文定名，再重写成 `{slug}.md`
@@ -73,24 +74,27 @@ python docx_to_html.py "设计文档.docx"
 | **有合并的表** | **只写 HTML `<table>`**（`colspan`/`rowspan`），禁止写成 `\| a \| b \|` |
 | **图** | 必须写入 `{slug}.md`（路径相对该 md）；**每张图下方必须有非空题注** |
 
-**图的写法**（二选一；图在上、题注在下）：
+**图的写法**（二选一；图在上、题注在下）。路径以题注 JSON 的 `path` 为准（相对 Word 所在目录）：
 
 单独成段的 Markdown（Pandoc 默认会变成 `<figure>` + `<figcaption>`）：
 
 ```markdown
 ![图 1 登录页](images/image1.png)
+![图 1 登录页](images/设计文档/image1.png)
 ```
+
+前一例用于目录里只有一个 Word；后一例用于多个 Word（子目录名等于该 Word 主文件名）。
 
 或 HTML：
 
 ```html
 <figure>
-  <img src="images/image1.png" alt="图 1 登录页" />
+  <img src="images/设计文档/image1.png" alt="图 1 登录页" />
   <figcaption>图 1 登录页</figcaption>
 </figure>
 ```
 
-**Hard rule**：禁止空题注 `![](images/...)`。读 `images/<Word文件名>.captions.json`：`caption` 非空则采用（可略改通顺，保留原编号）；为空则根据该图前后文补一句短题注。装饰性页眉 logo 与理解无关则可不用；正文插图不要丢。
+**Hard rule**：禁止空题注 `![](images/...)`。读对应 captions JSON：`caption` 非空则采用（可略改通顺，保留原编号）；为空则根据该图前后文补一句短题注。`path` 写进 md，不要自行把多份 Word 的图平铺到 `images/` 根下。装饰性页眉 logo 与理解无关则可不用；正文插图不要丢。
 
 合并表示例（放进 `{slug}.md` 正文）：
 
@@ -134,7 +138,7 @@ CSS 默认 `fresh-mint.css`（栏宽 64rem）。用户指定了 `fresh-sky` / `f
 | 要改原文件、写回 | 停。本 skill 不负责编辑 |
 
 **硬性规则**：同一文件默认只跑一种文本工具。先 MarkItDown；只有输出不合格时，才对该文件改跑 Docling。  
-**硬性规则**：处理 `.docx` / `.pptx`（含 `.docm` / `.pptm`）时，必须再跑图片提取，输出到**该 Office 文件所在目录**下的 `images/`，不是 Markdown 输出目录，也不是当前工作目录。
+**硬性规则**：处理 `.docx` / `.pptx`（含 `.docm` / `.pptm`）时，必须再跑图片提取，输出到**该 Office 文件所在目录**下的 `images/`（多个 Word 时再分子目录），不是 Markdown 输出目录，也不是当前工作目录。
 
 ---
 
@@ -246,9 +250,10 @@ python skills/document-extract/extract_office_images.py "./材料" -r
 | 项 | 约定 |
 |---|---|
 | 输出目录 | `<Office文件所在目录>/images/` |
-| 多文件同目录 | 共用同一个 `images/`；重名时自动加源文件名前缀 |
+| 仅一个 Word | 图直接进 `images/`；题注 `images/<stem>.captions.json` |
+| 多个 Word 同目录 | 每个 Word 进 `images/<主文件名>/`；题注该子目录里的 `captions.json` |
+| PPT / 单文件混放 | PPT 仍写在 `images/` 根下；与 Word 重名时加源文件名前缀 |
 | 无图 | 不创建空文件夹，stderr 打印 `[SKIP]` |
-| Word 题注 | 同目录写出 `images/<stem>.captions.json`（文档顺序 + caption） |
 | 不支持 | 老格式 `.doc` / `.ppt`（先另存为 `.docx` / `.pptx`） |
 | 不做 | 不改 Office 原文件；不从 Excel / PDF 抽图（用户未要求时不要自行扩大） |
 
@@ -260,7 +265,7 @@ stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改
 
 1. **先确认解释器**：`python` / `python -m pip` 必须是装过 `markitdown` 和 `docling` 的那一套。图片脚本只需标准库，与是否装过这两个包无关。Cursor 工作区解释器不一致时先对齐，再转换。
 2. **Markdown 输出位置**：用户指定了目录就用指定目录；否则写到源文件旁边，扩展名改为 `.md`。不要覆盖源文件。
-3. **图片输出位置**：固定为 Office 源文件同级的 `images/`。即使 Markdown 写到别处，图片仍跟 Word / PPT 走。
+3. **图片输出位置**：跟 Office 源文件走，写到同级 `images/`。同一目录有两个及以上 Word 时，每个 Word 再进 `images/<主文件名>/`。即使 Markdown 写到别处，图片仍不改地方。
 4. **一次一种文本工具**：对每个文件在日志里写清用了 MarkItDown 还是 Docling；Word / PPT 另写清图片提取结果。
 5. **只提取**：禁止用这些库（或 Office 自动化）写回 `.docx` / `.pptx` / `.xlsx` / `.pdf`。
 6. **Excel 要按单元格算数**：不要指望 Markdown。说明本 skill 只提取展示用文本；需要单元格级数据时改用 `pandas` / `openpyxl` 读表，而不是改跑 Docling。
