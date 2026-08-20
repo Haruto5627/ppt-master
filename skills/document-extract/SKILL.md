@@ -1,119 +1,20 @@
 ---
 name: document-extract
 description: >
-  Extract Word/PPT/Excel/PDF, and rewrite long Word into Markdown for a human
-  reader. Use when the user asks to 提取, 读取, 转换, or 精简设计文档.
-  Word rewrite uses Pandoc docx→md for LaTeX, stdlib image+caption extract,
-  and HTML <table> for merged cells in the rewritten md. Output filenames
-  follow the rewritten content. Do not export HTML. Do not convert Word
-  straight to HTML. Do not replace ppt-master source intake
-  (`source_to_md.py`) during PPT generation.
+  Extract Word/PPT/Excel/PDF into Markdown for an agent to read. Use when the
+  user asks to 提取, 读取, or 转换 Office/PDF text or images. MarkItDown by
+  default; Docling for scanned or layout-heavy PDFs; dump Word/PPT images into
+  a sibling images/ folder. Do not rewrite long Word into a human-facing draft
+  (use word-rewrite). Do not export HTML. Do not replace ppt-master source
+  intake (`source_to_md.py`) during PPT generation.
 ---
 
 # 文档提取
 
-从 Office / PDF **提取**原料；若用户要把过长的 Word 改写成给人看的材料，则 **提取 → 重写 Markdown**。不回写原文件。定位（教程、说明、纪要、指南等）和文件名按正文确定，不固定叫「教材」。
+从 Office / PDF **提取**原料，给 agent 读。不回写原文件。
 
-**触发**：提取、转 Markdown、提取图片、精简设计文档。  
-**范围外**：导出 HTML（用户自己做）、改回 Word/PPT/Excel、美化 PPT。PPT 生成走 [`ppt-master/SKILL.md`](../ppt-master/SKILL.md)。
-
----
-
-## 0. Word → 重写稿 Markdown（完整路径）
-
-**适用**：原稿是长 Word；**agent 只交付改写后的 `{slug}.md`**；公式必须是 LaTeX；有合并的表在 md 里写成 HTML `<table>`；Word 插图要进 md，图下要有题注。
-
-**禁止**：导出 HTML；Word 直出 HTML；用 MarkItDown 当公式主通道；把合并格拆掉只为了 MD 预览好看；一律写成 `教材.md`。
-
-假设文件为 `设计文档.docx`，和脚本放在同一台机器（不必在 ppt-master 仓库里）。Windows 若 `python3` 不可用，改用 `python`。
-
-### 0.1 提取原料（不给读者看）
-
-在 Word 所在目录：
-
-```bash
-pandoc "设计文档.docx" -t markdown -o "_extracted.md"
-python extract_office_images.py "设计文档.docx"
-python docx_to_html.py "设计文档.docx" --check
-```
-
-`--check` 若打印 `html`，再跑：
-
-```bash
-python docx_to_html.py "设计文档.docx"
-```
-
-得到：
-
-| 文件 | 用途 |
-|---|---|
-| `_extracted.md` | 叙事 + **LaTeX 公式**（Pandoc 从 OMML 转出）。表可以丑 |
-| `images/` | 该目录只有一个 Word：插图直接放这里 |
-| `images/<Word主文件名>/` | 该目录有多个 Word：每个文件一个子目录 |
-| 题注 JSON | 单文件：`images/<stem>.captions.json`；多文件：`images/<stem>/captions.json` |
-| `设计文档.body.html` | 仅当有合并格：给重写看清 `colspan`/`rowspan`，不是成品 |
-
-### 0.2 按正文定名，再重写成 `{slug}.md`
-
-读完 `_extracted.md` 后，根据正文确定文稿定位和文件名，再重写。不要覆盖 Word。
-
-| 项 | 规则 |
-|---|---|
-| 定位 | 按内容判断：教程、操作说明、设计说明、纪要、指南等。用户指定了定位就用用户的 |
-| 文件名 | `{slug}.md`。slug 取标题或主题，中文或 ASCII 均可 |
-| 用户指定了文件名 | 用用户的，不要另起一套 |
-| **禁止** | 不管正文一律写成 `教材.md`；不要写 `{slug}.html` |
-
-重写目标：**缩短、拆步骤、改说法**，让人能读；不是 Word 保真排版。
-
-| 元素 | 重写规则 |
-|---|---|
-| 正文 | 精简，保留必要术语 |
-| 公式 | 必须仍是 `$...$` / `$$...$$`，禁止改成纯文字或截图（除非用户明确不要公式） |
-| 无合并的表 | Markdown 管道表 |
-| **有合并的表** | **只写 HTML `<table>`**（`colspan`/`rowspan`），禁止写成 `\| a \| b \|` |
-| **图** | 必须写入 `{slug}.md`（路径相对该 md）；**每张图下方必须有非空题注** |
-
-**图的写法**（二选一；图在上、题注在下）。路径以题注 JSON 的 `path` 为准（相对 Word 所在目录）：
-
-单独成段的 Markdown（方括号里写题注）：
-
-```markdown
-![图 1 登录页](images/image1.png)
-![图 1 登录页](images/设计文档/image1.png)
-```
-
-前一例用于目录里只有一个 Word；后一例用于多个 Word（子目录名等于该 Word 主文件名）。
-
-或 HTML：
-
-```html
-<figure>
-  <img src="images/设计文档/image1.png" alt="图 1 登录页" />
-  <figcaption>图 1 登录页</figcaption>
-</figure>
-```
-
-**Hard rule**：禁止空题注 `![](images/...)`。读对应 captions JSON：`caption` 非空则采用（可略改通顺，保留原编号）；为空则根据该图前后文补一句短题注。`path` 写进 md，不要自行把多份 Word 的图平铺到 `images/` 根下。装饰性页眉 logo 与理解无关则可不用；正文插图不要丢。
-
-合并表示例（放进 `{slug}.md` 正文）：
-
-```html
-<table>
-  <tr>
-    <th rowspan="2">模块</th>
-    <th colspan="2">步骤</th>
-  </tr>
-  <tr><th>序号</th><th>说明</th></tr>
-  <tr>
-    <td rowspan="2">登录</td>
-    <td>1</td><td>输入账号</td>
-  </tr>
-  <tr><td>2</td><td>校验密码</td></tr>
-</table>
-```
-
-作者自己看 `{slug}.md` 时，管道表预览合并格会坏是正常的；以 `<table>` 源码为准。**交付 `{slug}.md` 即停，不要导出 HTML。**
+**触发**：提取、转 Markdown、提取图片。  
+**范围外**：把长 Word 改写成给人看的稿（走 [`word-rewrite`](../word-rewrite/SKILL.md)）；导出 HTML；改回 Word/PPT/Excel；美化 PPT。PPT 生成走 [`ppt-master/SKILL.md`](../ppt-master/SKILL.md)。
 
 ---
 
@@ -121,7 +22,7 @@ python docx_to_html.py "设计文档.docx"
 
 | 当前任务 | 用什么 |
 |---|---|
-| 长 Word → 按正文精简改写成 Markdown | **只走第 0 节完整路径** |
+| 长 Word → 按正文精简改写成给人看的 Markdown | **停。走 [`word-rewrite`](../word-rewrite/SKILL.md)** |
 | 只要提取内容，给 agent 读 | MarkItDown 或 Docling；Word / PPT 再抽图片 |
 | 只要 Word / PPT 里的图片 | 直接跑 `extract_office_images.py` |
 | ppt-master 生成 / 填模板 / 美化 / 增强 | **禁止**用本 skill 替代摄入。走 `python skills/ppt-master/scripts/source_to_md.py` |
@@ -265,16 +166,9 @@ stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改
 ## 7. 禁止
 
 - 为「以防万一」对每个文件同时跑 MarkItDown 和 Docling
+- 用本 skill 改写长 Word 给人看（走 `word-rewrite`）
 - 用本 skill 替代 ppt-master 的 `source_to_md.py`
 - 把提取结果当成已编辑的正式稿写回原格式
 - 因为 CLI 不在 PATH 就报告「没装好」——先试 `python -m markitdown` / `python -m docling`
 - 把 Word / PPT 图片写到当前工作目录、Markdown 旁的 `_files/`，或任何不是源文件同级 `images/` 的地方
-- 把 `{slug}.md` 导出成 HTML，或 Word 直出 HTML 当交付物（HTML 导出由用户自己做）
-
----
-
-## 8. 合并单元格（重写稿写法）
-
-管道表没有 `colspan`。有合并的表在 `{slug}.md` 里写成 HTML `<table>`（见第 0.2 节）。
-
-提取时可用 `docx_to_html.py` 看清原表合并结构。**不要**把 `设计文档.body.html` 当成交付物；**不要**为了 MD 预览把合并格填开（除非改写上确实该拆成两张表）。
+- 导出 HTML（用户自己做）
