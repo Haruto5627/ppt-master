@@ -1,29 +1,29 @@
 ---
 name: document-extract
 description: >
-  Extract Word/PPT/Excel/PDF, rewrite long Word design docs into beginner
-  Markdown, and publish HTML with Pandoc CSS. Use when the user asks to 提取,
-  读取, 转换, 精简设计文档, or turn Markdown into HTML. Word→新手教材 HTML
-  uses Pandoc docx→md for LaTeX formulas, stdlib image extract, HTML <table>
-  for merged cells in the rewritten md, then pandoc --mathjax --css.
-  Do not convert Word straight to HTML as the deliverable. Do not replace
-  ppt-master source intake (`source_to_md.py`) during PPT generation.
+  Extract Word/PPT/Excel/PDF; rewrite long Word into Markdown then Pandoc HTML.
+  Use when the user asks to 提取, 读取, 转换, 精简设计文档, or turn Markdown
+  into HTML. Word→HTML uses Pandoc docx→md for LaTeX, stdlib image+caption
+  extract, HTML <table> for merged cells, then pandoc --mathjax --css.
+  Output filenames follow the rewritten content. Do not convert Word straight
+  to HTML as the deliverable. Do not replace ppt-master source intake
+  (`source_to_md.py`) during PPT generation.
 ---
 
 # 文档提取
 
-从 Office / PDF **提取**原料；若用户要把过长的 Word 设计文档改成新手可读材料，则 **提取 → 重写 Markdown → Pandoc HTML**。不回写原文件。
+从 Office / PDF **提取**原料；若用户要把过长的 Word 改写成给人看的材料，则 **提取 → 重写 Markdown → Pandoc HTML**。不回写原文件。成品定位（教程、说明、纪要、指南等）和文件名按正文确定，不固定叫「教材」。
 
 **触发**：提取、转 Markdown、提取图片、精简设计文档、或导出 HTML。  
 **范围外**：改回 Word/PPT/Excel、美化 PPT。PPT 生成走 [`ppt-master/SKILL.md`](../ppt-master/SKILL.md)。
 
 ---
 
-## 0. Word 设计文档 → 新手 HTML（完整路径）
+## 0. Word → 重写稿 + HTML（完整路径）
 
-**适用**：原稿是长 Word 设计文档；Markdown 只给作者/agent 看；**成品是 HTML**；公式必须是 LaTeX；合并单元格要保留到 HTML。
+**适用**：原稿是长 Word；Markdown 只给作者/agent 看；**成品是 HTML**；公式必须是 LaTeX；合并单元格要保留到 HTML；Word 插图要进 MD 和 HTML，图下要有题注。
 
-**禁止**：Word 直出 HTML 当成品；用 MarkItDown 当公式主通道；把合并格拆掉只为了 MD 预览好看。
+**禁止**：Word 直出 HTML 当成品；用 MarkItDown 当公式主通道；把合并格拆掉只为了 MD 预览好看；一律把成品写成 `教材.md` / `教材.html`。
 
 假设文件为 `设计文档.docx`，和脚本、CSS 放在同一台机器（不必在 ppt-master 仓库里）。Windows 若 `python3` 不可用，改用 `python`。
 
@@ -49,11 +49,21 @@ python docx_to_html.py "设计文档.docx"
 |---|---|
 | `_extracted.md` | 叙事 + **LaTeX 公式**（Pandoc 从 OMML 转出）。表可以丑 |
 | `images/` | 插图，与 Word 同级 |
+| `images/设计文档.captions.json` | 文档顺序、文件名、Word 题注（有则填、无则空） |
 | `设计文档.body.html` | 仅当有合并格：给重写看清 `colspan`/`rowspan`，不是成品 |
 
-### 0.2 重写成教学稿 `教材.md`
+### 0.2 按正文定名，再重写成 `{slug}.md`
 
-面向新手：**缩短、拆步骤、改说法**。写在 `教材.md`，不要覆盖 Word。
+读完 `_extracted.md` 后，根据正文确定文稿定位和文件名，再重写。不要覆盖 Word。
+
+| 项 | 规则 |
+|---|---|
+| 定位 | 按内容判断：教程、操作说明、设计说明、纪要、指南等。用户指定了定位就用用户的 |
+| 文件名 | `{slug}.md` / `{slug}.html`。slug 取标题或主题，中文或 ASCII 均可 |
+| 用户指定了文件名 | 用用户的，不要另起一套 |
+| **禁止** | 不管正文一律写成 `教材.md` / `教材.html` |
+
+重写目标：**缩短、拆步骤、改说法**，让人能读；不是 Word 保真排版。
 
 | 元素 | 重写规则 |
 |---|---|
@@ -61,9 +71,28 @@ python docx_to_html.py "设计文档.docx"
 | 公式 | 必须仍是 `$...$` / `$$...$$`，禁止改成纯文字或截图（除非用户明确不要公式） |
 | 无合并的表 | Markdown 管道表 |
 | **有合并的表** | **只写 HTML `<table>`**（`colspan`/`rowspan`），禁止写成 `\| a \| b \|` |
-| 图 | `![](images/文件名)`，路径相对 `教材.md` |
+| **图** | 必须写入 `{slug}.md`（路径相对该 md）；**每张图下方必须有非空题注** |
 
-合并表示例（放进 `教材.md` 正文）：
+**图的写法**（二选一；图在上、题注在下）：
+
+单独成段的 Markdown（Pandoc 默认会变成 `<figure>` + `<figcaption>`）：
+
+```markdown
+![图 1 登录页](images/image1.png)
+```
+
+或 HTML：
+
+```html
+<figure>
+  <img src="images/image1.png" alt="图 1 登录页" />
+  <figcaption>图 1 登录页</figcaption>
+</figure>
+```
+
+**Hard rule**：禁止空题注 `![](images/...)`。读 `images/<Word文件名>.captions.json`：`caption` 非空则采用（可略改通顺，保留原编号）；为空则根据该图前后文补一句短题注。装饰性页眉 logo 与理解无关则可不用；正文插图不要丢。
+
+合并表示例（放进 `{slug}.md` 正文）：
 
 ```html
 <table>
@@ -80,17 +109,17 @@ python docx_to_html.py "设计文档.docx"
 </table>
 ```
 
-作者自己看 `教材.md` 时，管道表预览合并格会坏是正常的；**以导出的 HTML 核对表。**
+作者自己看 `{slug}.md` 时，管道表预览合并格会坏是正常的；**以导出的 HTML 核对表和图注。**
 
 ### 0.3 导出成品 HTML
 
 ```bash
-pandoc "教材.md" -s --embed-resources --toc --mathjax --css=fresh-mint.css -o "教材.html"
+pandoc "{slug}.md" -s --embed-resources --toc --mathjax --css=fresh-mint.css -o "{slug}.html"
 ```
 
-CSS 默认 `fresh-mint.css`（栏宽 64rem）。用户指定了 `fresh-sky` / `fresh-peach` / `fresh-lilac` / `fresh-latte` 则换文件。图片已被 `--embed-resources` 打进 HTML。
+CSS 默认 `fresh-mint.css`（栏宽 64rem）。用户指定了 `fresh-sky` / `fresh-peach` / `fresh-lilac` / `fresh-latte` 则换文件。图片已被 `--embed-resources` 打进 HTML，题注随 `<figcaption>` 出现在图下。
 
-**成品是 `教材.html`，不是 `_extracted.md`，也不是 `设计文档.body.html`。**
+**成品是 `{slug}.html`，不是 `_extracted.md`，也不是 `设计文档.body.html`。**
 
 ---
 
@@ -98,7 +127,7 @@ CSS 默认 `fresh-mint.css`（栏宽 64rem）。用户指定了 `fresh-sky` / `f
 
 | 当前任务 | 用什么 |
 |---|---|
-| 长 Word 设计文档 → 精简成新手可读 HTML | **只走第 0 节完整路径** |
+| 长 Word → 按正文精简改写并发布 HTML | **只走第 0 节完整路径** |
 | 只要提取内容，给 agent 读（不发布 HTML） | MarkItDown 或 Docling；Word / PPT 再抽图片 |
 | 只要 Word / PPT 里的图片 | 直接跑 `extract_office_images.py` |
 | ppt-master 生成 / 填模板 / 美化 / 增强 | **禁止**用本 skill 替代摄入。走 `python skills/ppt-master/scripts/source_to_md.py` |
@@ -219,6 +248,7 @@ python skills/document-extract/extract_office_images.py "./材料" -r
 | 输出目录 | `<Office文件所在目录>/images/` |
 | 多文件同目录 | 共用同一个 `images/`；重名时自动加源文件名前缀 |
 | 无图 | 不创建空文件夹，stderr 打印 `[SKIP]` |
+| Word 题注 | 同目录写出 `images/<stem>.captions.json`（文档顺序 + caption） |
 | 不支持 | 老格式 `.doc` / `.ppt`（先另存为 `.docx` / `.pptx`） |
 | 不做 | 不改 Office 原文件；不从 Excel / PDF 抽图（用户未要求时不要自行扩大） |
 
@@ -252,7 +282,7 @@ stdout 每行一个写出的图片路径。Windows 若 `python3` 不可用，改
 用户要把 `.md` 做成可分发 HTML 时，用 [`pandoc-css/`](pandoc-css/) 里的**独立 CSS 源文件**，不要再去网上拼一套。
 
 ```bash
-pandoc "教材.md" -s --embed-resources --toc --mathjax --css=skills/document-extract/pandoc-css/fresh-mint.css -o "教材.html"
+pandoc "{slug}.md" -s --embed-resources --toc --mathjax --css=skills/document-extract/pandoc-css/fresh-mint.css -o "{slug}.html"
 ```
 
 | CSS | 适用 |
@@ -263,12 +293,12 @@ pandoc "教材.md" -s --embed-resources --toc --mathjax --css=skills/document-ex
 | `fresh-lilac.css` | 丁香紫 |
 | `fresh-latte.css` | Catppuccin Latte 奶茶 |
 
-用户指定颜色则用对应文件；未指定时用 `fresh-mint.css`。含公式的教学稿必须加 `--mathjax`。旧主题在 [`pandoc-css/classic/`](pandoc-css/classic/)，仅在用户明确要「GitHub / 公文 / 深色」时再用。只交付 CSS / HTML，不要改回 Office 原件。
+用户指定颜色则用对应文件；未指定时用 `fresh-mint.css`。含公式的重写稿必须加 `--mathjax`。旧主题在 [`pandoc-css/classic/`](pandoc-css/classic/)，仅在用户明确要「GitHub / 公文 / 深色」时再用。只交付 CSS / HTML，不要改回 Office 原件。
 
 ---
 
-## 9. 合并单元格（教学稿写法）
+## 9. 合并单元格（重写稿写法）
 
-管道表没有 `colspan`。有合并的表在 `教材.md` 里写成 HTML `<table>`（见第 0.2 节），Pandoc 会带进成品 HTML。
+管道表没有 `colspan`。有合并的表在 `{slug}.md` 里写成 HTML `<table>`（见第 0.2 节），Pandoc 会带进成品 HTML。
 
 提取时可用 `docx_to_html.py` 看清原表合并结构。**不要**把 `设计文档.body.html` 直接当成品；**不要**为了 MD 预览把合并格填开（除非教学上确实该拆成两张表）。
